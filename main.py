@@ -99,7 +99,7 @@ class Second(tk.Frame):
         self.level2_button.place(x=310, y=190)
 
         self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
-        self.level3_button.place(x=310, y=300)
+        self.level3_button.place(x=310, y=320)
         
         self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
         self.back_button.place(x=10, y=5)
@@ -119,11 +119,11 @@ class Third(tk.Frame):
         self.calculus_button = tk.Button(self, text="CALCULUS", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
         self.calculus_button.place(x=308, y=50)
 
-        self.probability_button = tk.Button(self, text="PROBABILITY", bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Second))
+        self.probability_button = tk.Button(self, text="PROBABILITY", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
         self.probability_button.place(x=308, y=190)
 
         self.algebra_button = tk.Button(self, text="ALGEBRA ", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
-        self.algebra_button.place(x=308, y=300)
+        self.algebra_button.place(x=308, y=320)
         
         self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
         self.back_button.place(x=12, y=5)
