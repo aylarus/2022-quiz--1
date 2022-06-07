@@ -90,32 +90,45 @@ class Second(tk.Frame):
         self.label.image=self.photo
         self.label.place(x=0,y=0)
         
-        self.title_label = tk.Label(self, text="WHAT IS YOUR YEAR LEVEL?", bg = "ivory", font=("Arial Bold", 10))
+        self.title_label = tk.Label(self, text="WHAT IS YOUR YEAR LEVEL?", bg = "#D5E8D4", font=("Arial Bold", 10))
         self.title_label.place(x=40, y=195)        
-        self.next_button = tk.Button(self, text="Next", font=("Arial", 10), command=lambda: controller.show_frame(Third))
-        self.next_button.place(x=50, y=50)
+        self.level1_button = tk.Button(self, text="LEVEL 1", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
+        self.level1_button.place(x=310, y=50)
+
+        self.level2_button = tk.Button(self, text="LEVEL 2", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
+        self.level2_button.place(x=310, y=190)
+
+        self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
+        self.level3_button.place(x=310, y=300)
         
-        self.back_button = tk.Button(self, text="<<", bg= 'white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
+        self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
         self.back_button.place(x=10, y=5)
-        
-#A lambda function is a small anonymous function(usually we dont need to reuse it)
-#A lambda function can take any number of arguments, but can only have one expression 
 
 class Third(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         
-        self.configure(bg='ivory')
+        load = Image.open("maths2.jpg")
+        self.photo = ImageTk.PhotoImage(load)
+        self.label = tk.Label(self, image=self.photo)
+        self.label.image=self.photo
+        self.label.place(x=0,y=0)
         
-        self.app_label = tk.Label(self, text="Store some content related to your \n project or what your application made for. \n All the best!!", bg = "ivory", font=("Arial Bold", 25))
-        self.app_label.place(x=40, y=150)
+        self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
+        self.title_label.place(x=37, y=195)        
+        self.calculus_button = tk.Button(self, text="CALCULUS", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
+        self.calculus_button.place(x=308, y=50)
+
+        self.probability_button = tk.Button(self, text="PROBABILITY", bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Second))
+        self.probability_button.place(x=308, y=190)
+
+        self.algebra_button = tk.Button(self, text="ALGEBRA ", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
+        self.algebra_button.place(x=308, y=300)
         
-        self.home_button = tk.Button(self, text="Home", font=("Arial", 15), command=lambda: controller.show_frame(Start))
-        self.home_button.place(x=650, y=450)
-        
-        self.back_button = tk.Button(self, text="<<", font=("Arial", 15), command=lambda: controller.show_frame(Second))
-        self.back_button.place(x=100, y=450)
-        
+        self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
+        self.back_button.place(x=12, y=5)
+
+
 
 class Application(tk.Tk):
     def __init__(self, *args, **kwargs):
