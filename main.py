@@ -36,7 +36,7 @@ class Start(tk.Frame):
                 messagebox.showinfo("Error", "Couldnt open next file")
      
          
-        self.enterbutton = tk.Button(self.border, text= "ENTER", font=("Arial", 15), bg= "white", command=verify)
+        self.enterbutton = tk.Button(self.border,  pady=12, padx=16, text= "ENTER", font=("Arial", 15), bg= "white", command=verify)
         self.enterbutton.place(x=330, y=223)
         
         def signup():
@@ -71,13 +71,13 @@ class Start(tk.Frame):
                 else:
                     messagebox.showinfo("Error", "Please fill in the boxes!")
                     
-            self.signup_button = tk.Button(signup_window, text="REGISTER", font=("Arial",15), bg="white", command=check)
-            self.signup_button.place(x=170, y=150)
+            self.signup_button = tk.Button(signup_window, text="REGISTER", font=("Arial",15), bg="white", command=check, pady=12, padx=18)
+            self.signup_button.place(x=340, y=150)
             
             signup_window.geometry("500x240")
             signup_window.mainloop()
             
-        self.signup_button = tk.Button(self, text="SIGN UP", bg = "white", font=("Arial",15), command=signup)
+        self.signup_button = tk.Button(self, text="SIGN UP", bg = "white", pady=12, padx=10, font=("Arial",15), command=signup)
         self.signup_button.place(x=180, y=256)
         
 class Second(tk.Frame):
@@ -91,15 +91,16 @@ class Second(tk.Frame):
         self.label.place(x=0,y=0)
         
         self.title_label = tk.Label(self, text="WHAT IS YOUR YEAR LEVEL?", bg = "#D5E8D4", font=("Arial Bold", 10))
+      
         self.title_label.place(x=40, y=195)        
-        self.level1_button = tk.Button(self, text="LEVEL 1", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
-        self.level1_button.place(x=310, y=50)
+        self.level1_button = tk.Button(self, text="LEVEL 1", pady=13, padx=17,  bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
+        self.level1_button.place(x=301, y=90)
 
-        self.level2_button = tk.Button(self, text="LEVEL 2", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
-        self.level2_button.place(x=310, y=190)
+        self.level2_button = tk.Button(self, text="LEVEL 2", pady=13, padx=17,bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
+        self.level2_button.place(x=301, y=180)
 
-        self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Third))
-        self.level3_button.place(x=310, y=320)
+        self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", pady=13, padx=17, font=("Arial", 15), command=lambda: controller.show_frame(Third))
+        self.level3_button.place(x=301, y=270)
         
         self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
         self.back_button.place(x=10, y=5)
@@ -116,16 +117,16 @@ class Third(tk.Frame):
         
         self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
         self.title_label.place(x=37, y=195)        
-        self.calculus_button = tk.Button(self, text="CALCULUS", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
-        self.calculus_button.place(x=308, y=50)
+        self.calculus_button = tk.Button(self, text="CALCULUS", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
+        self.calculus_button.place(x=301, y=90)
 
-        self.probability_button = tk.Button(self, text="PROBABILITY", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
-        self.probability_button.place(x=308, y=190)
+        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Second))
+        self.probability_button.place(x=301, y=180)
 
-        self.algebra_button = tk.Button(self, text="ALGEBRA ", bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Second))
-        self.algebra_button.place(x=308, y=320)
+        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Second))
+        self.algebra_button.place(x=301, y=270)
         
-        self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
+        self.back_button = tk.Button(self, text="<<", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Second))
         self.back_button.place(x=12, y=5)
 
 
