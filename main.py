@@ -14,14 +14,14 @@ class Start(tk.Frame):
         self.heading_label = tk.Label(self.border, text="Welcome to the ncea maths quiz helper", font=("Arial Bold", 9), bg='#D5E8D4')
         self.heading_label.place(x=8, y=0)
         
-        self.user_label = tk.Label(self.border, text="Username:", font=("Arial Bold", 15), bg='#D5E8D4')
+        self. user_label = tk.Label(self.border, text="Username:", font=("Arial Bold", 15), bg='#D5E8D4')
         self.user_label.place(x=10, y=70)
-        self.user_entry = tk.Entry(self.border, width = 25, bd = 3)
+        self.user_entry = tk.Entry(self.border, width = 23, bd = 3)
         self.user_entry.place(x=180, y=70)
         
         self.password_label = tk.Label(self.border, text="Password:", font=("Arial Bold", 15), bg='#D5E8D4')
         self.password_label.place(x=10, y=150)
-        self.password_entry = tk.Entry(self.border, width = 25, show='*', bd = 3)
+        self.password_entry = tk.Entry(self.border, width = 23, show='*', bd = 3)
         self.password_entry.place(x=180, y=150)
         
         def verify():
@@ -51,17 +51,17 @@ class Start(tk.Frame):
             signup_window.title("SIGN UP")
             sgn_name_label = tk.Label(signup_window, text="Username:", font=("Arial",13), bg="#D5E8D4")
             sgn_name_label.place(x=10, y=10)
-            sgn_name_entry = tk.Entry(signup_window, width=25, bd=3)
+            sgn_name_entry = tk.Entry(signup_window, width=23, bd=3)
             sgn_name_entry.place(x=180, y=10)
             
             sgn_password_label = tk.Label(signup_window, text="Password:", font=("Arial",13), bg="#D5E8D4")
             sgn_password_label.place(x=10, y=60)
-            sgn_password_entry = tk.Entry(signup_window, width=25, show="*", bd=3)
+            sgn_password_entry = tk.Entry(signup_window, width=23, show="*", bd=3)
             sgn_password_entry.place(x =180, y=60)
             
             confirm_password_label = tk.Label(signup_window, text="Confirm Password:", font=("Arial",13), bg="#D5E8D4")
             confirm_password_label.place(x=10, y=110)
-            confirm_password_entry = tk.Entry(signup_window, width=25, show="*", bd=3)
+            confirm_password_entry = tk.Entry(signup_window, width=23, show="*", bd=3)
             confirm_password_entry.place(x =180, y=110)
             
             def check():
@@ -126,10 +126,10 @@ class Level1(tk.Frame):
         self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
         self.title_label.place(x=37, y=195)        
 
-        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quiz))
+        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quizone))
         self.probability_button.place(x=301, y=120)
 
-        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quiz))
+        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quizone))
         self.algebra_button.place(x=301, y=220)
         
         self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
@@ -149,13 +149,13 @@ class Type(tk.Frame):
         self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
         self.title_label.place(x=37, y=195)   
       
-        self.calculus_button = tk.Button(self, text="CALCULUS", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Quiz))
+        self.calculus_button = tk.Button(self, text="CALCULUS", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Quizone))
         self.calculus_button.place(x=301, y=90)
 
-        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quiz))
+        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quizone))
         self.probability_button.place(x=301, y=180)
 
-        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quiz))
+        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quizone))
         self.algebra_button.place(x=301, y=270)
         
         self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
@@ -173,16 +173,17 @@ score = 0
 
 def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
     global qnum
-    qnum = random.randint(1, 10)
+    qnum = random.randint(1, 5)
     if qnum not in asked:
         asked.append(qnum)
     elif qnum in asked:
         randomiser()
 
 
-class Quiz(tk.Frame):
+class Quizone(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#D5E8D4")
+        self.controller = controller
         self.questions_answers = {#questions to be changed later 
             1: [
                 'QUESTION: what is the colour of an apple  ',
@@ -229,51 +230,6 @@ class Quiz(tk.Frame):
                 ' green ',
                 4,
                 ],
-            6: [
-                'QUESTION: what is the colour of a  orange?    ',
-                ' yellow ',
-                ' red ',
-                ' orange ',
-                ' pink ',
-                ' orange ',
-                3,
-                ],
-            7: [
-                'QUESTION: what is the color of a pineapple?     ',
-                ' orange ',
-                ' beige ',
-                ' red ',
-                ' yellow ',
-                ' yellow ',
-                4,
-                ],
-            8: [
-                'QUESTION: what colour are mangoes? ',
-                ' red ',
-                ' yellow ',
-                ' orange ',
-                ' pink ',
-                ' orange ',
-                3,
-                ],
-            9: [
-                'QUESTION: what is the colour of strawberries?  ',
-                ' red',
-                ' green',
-                ' orange',
-                ' pink',
-                ' red',
-                1,
-                ],
-            10: [
-                'QUESTION: what is the colour of watermelons?',
-                'dark green ',
-                'pink',
-                'red ',
-                'green',
-                'green',
-                4,
-                ],
             }
 
         randomiser()
@@ -282,9 +238,9 @@ class Quiz(tk.Frame):
 
         self.question_label = tk.Label(self,
                                     text=self.questions_answers[qnum][0],
-                                    font=('Arial', '11'),
+                                    font=('Arial', '10'),
                                     bg='#D5E8D4')
-        self.question_label.grid(row=1, padx=55, pady=30)
+        self.question_label.grid(row=1, padx=5, pady=50)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
         # radio button 1 so the first choices will appear
@@ -292,74 +248,76 @@ class Quiz(tk.Frame):
         self.rb1 = tk.Radiobutton(
             self,
             text=self.questions_answers[qnum][1],
-            font=('Comic Sans MS', '11'),
+            font=('Comic Sans MS', '10'),
             bg='white',
             value=1,
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=120,
+            padx=170,
             )
-        self.rb1.grid(row=2, pady=1, padx=40)  #
+        self.rb1.grid(row=2, pady=3, padx=5)  #
 
         # radio button 2 so the second choices will appear
 
         self.rb2 = tk.Radiobutton(
             self,
             text=self.questions_answers[qnum][2],
-            font=('Comic Sans MS', '11'),
+            font=('Comic Sans MS', '10'),
             bg='white',
             value=2,
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=120,
+            padx=170,
             )
-        self.rb2.grid(row=3, pady=1, padx=40)
+        self.rb2.grid(row=3, pady=3, padx=25)
 
         # radio button 3 so the third choices will appear
 
         self.rb3 = tk.Radiobutton(
             self,
             text=self.questions_answers[qnum][3],
-            font=('Comic Sans MS', '11'),
+            font=('Comic Sans MS', '10'),
             bg='white',
             value=3,
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=120,
+            padx=170,
             )
-        self.rb3.grid(row=4, pady=1, padx=40)
+        self.rb3.grid(row=4, pady=3, padx=25)
 
         # radio button 4 so the forth choices will appear
 
         self.rb4 = tk.Radiobutton(
             self,
             text=self.questions_answers[qnum][4],
-            font=('Comic Sans MS', '11'),
+            font=('Comic Sans MS', '10'),
             bg='white',
             value=4,
             indicator=0,
             pady=10,
-            padx=120,
+            padx=170,
             variable=self.var1,
             )
-        self.rb4.grid(row=5, pady=1, padx=0)
+        self.rb4.grid(row=5, pady=3, padx=25)
 
 
         # score label is used to show how much the end user has scored and if they are loosing any points
 
         self.score_label = tk.Label(self, text='SCORE',
-                                 font=('Comic Sans MS', '11'),
+                                 font=('Arial', '11'),
                                  bg='white')
-        self.score_label.grid(row=7, pady=1, padx=4)
+        self.score_label.grid(row=7, pady=10, padx=4)
 
         # after the user has pick there choice the confirm button will  go to the next question
 
         self.confirm_button = tk.Button(self, text='CONFIRM',
-                bg='#63E4CF', command=self.test_progress, padx=30)
-        self.confirm_button.grid(row=6, pady=5, padx=22)
+                bg='white',font=('Arial', '12'), command=self.test_progress, padx=10, pady=10)
+        self.confirm_button.grid(row=6,pady=1, padx=100)
+
+
 
   # the question label to new questions and possible answers as new radio button choices
 
@@ -378,12 +336,14 @@ class Quiz(tk.Frame):
         global score  # this score us there to be acessed to everyone
         scr_label = self.score_label  # shhowing the score because it will be different each time a question is answered
         choice = self.var1.get()  # get the users choice
-        if len(asked) > 9:  # to determine it its the last question to end the quiz after
+        if len(asked) > 4:  # to determine it its the last question to end the quiz after
             if choice == self.questions_answers[qnum][6]:  # cheking the qnum has the correct answer that is stored in index 6
                 score += 1  # adding a point after each correct answer
                 scr_label.configure(text=score)  # it will change the score to the new score each time
                 self.confirm_button.config(text='confirm')  # will change the test on the button to confirm
-                self.end_screen()  # to open endscreen when quiz is completed
+                self.ending()  # to open endscreen when quiz is completed
+
+                  # to open endscreen when quiz is completed
             else:
 
                 print(choice)
@@ -391,7 +351,9 @@ class Quiz(tk.Frame):
                 scr_label.configure(text='Incorrect the answer was:  '
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
-                self.end_screen()  # to open endscreen when quiz is completed
+                self.ending()  # to open endscreen when quiz is completed
+           #https://stackoverflow.com/questions/15235794/calling-tkinter-frame-controller-from-function-rather-then-button-command  
+               # controller.show_frame(Ending)  # to open endscreen when quiz is completed
         else:
 
             if choice == 0:  # if the user doesnt select and option
@@ -416,10 +378,29 @@ class Quiz(tk.Frame):
                              + self.questions_answers[qnum][5])  # telling the correct answer
                     self.confirm_button.config(text='Confirm')
                     self.questions_setup()  # moving to the next question
+    def ending(self):
+            ending_window = tk.Tk()
+            ending_window.resizable(0,0)
+            ending_window.configure(bg="#D5E8D4")
+            ending_window.title("End")
+            ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
+            ending_name_label.place(x=30, y=150)
+            def check():
+              ending_window.destroy()
+              self.controller.show_frame(Ending)
+            ending_button = tk.Button(ending_window, text="Next", command=check)
+            ending_button.place(x=10, y=10)
+#this will only open a window you do what you like in here, you can add frame, image, whatever
+            ending_window.geometry("430x420")
+            ending_window.mainloop()
+    
 
 
 
 
+class Ending(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg="#D5E8D4")
 
 class Application(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -433,7 +414,7 @@ class Application(tk.Tk):
         self.window.grid_columnconfigure(0, minsize = 800)
         
         self.frames = {}
-        for F in (Start, Year, Level1, Type, Quiz):
+        for F in (Start, Year, Level1, Type, Quizone, Ending ):
             frame = F(self.window, self)
             self.frames[F] = frame
             frame.grid(row = 0, column=0, sticky="nsew")
