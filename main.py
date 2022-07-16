@@ -401,6 +401,46 @@ class Quizone(tk.Frame):
 class Ending(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#D5E8D4")
+      
+        load = Image.open("maths2.jpg")
+        self.photo = ImageTk.PhotoImage(load)
+        self.label = tk.Label(self, image=self.photo)
+        self.label.image=self.photo
+        self.label.place(x=0,y=0)
+        
+        self.one_label = tk.Label(self, text="Well done your final score is: ", bg = "#D5E8D4", font=("Arial Bold", 10))
+        self.one_label.place(x=37, y=255)
+
+        self.two_label = tk.Label(self, text="(☞ ͡° ͜ʖ ͡°)☞ ", bg = "#D5E8D4", font=("Arial Bold", 25))
+        self.two_label.place(x=65, y=100)
+
+      
+        self.home_button = tk.Button(self, text="<<Home", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Start))
+        self.home_button.place(x=303, y=60)
+
+        def add():
+            add_window = tk.Tk()
+            add_window.resizable(0,0)
+            add_window.configure(bg="#D5E8D4")
+            add_window.title("ANSWERS")
+            add_name_label = tk.Label(add_window, text="Answers", font=("Arial",10), bg="#D5E8D4")
+            add_name_label.place(x=100, y=4)         
+            def checking():
+                add_window.destroy()
+            add_button = tk.Button(add_window, text="<<", command=checking)
+            add_button.place(x=10, y=10)
+            add_window.geometry("430x420")
+            add_window.mainloop()
+
+        self.answers_button = tk.Button(self, text="Answers to \n Question", padx=15, pady=30, bg="#D5E8D4", font=("Arial", 10), command=add)
+        self.answers_button.place(x=303, y=160)
+      
+        def destroy():
+          app.destroy()
+        self.exit_button = tk.Button(self, text=" Exit ", bg="#D5E8D4",  padx=33,font=("Arial", 12), pady=14, command=destroy)
+        self.exit_button.place(x=303, y=310)
+      
+
 
 class Application(tk.Tk):
     def __init__(self, *args, **kwargs):
