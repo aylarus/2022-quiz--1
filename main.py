@@ -17,7 +17,7 @@ score = 0
 
 def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
     global qnum
-    qnum = random.randint(1, 5)#randomising 10 different questions that will be asked in the questions component/ window
+    qnum = random.randint(1, 10)#randomising 8 different questions that will be asked in the questions component/ window
     if qnum not in asked:
         asked.append(qnum)
     elif qnum in asked:
@@ -122,17 +122,18 @@ class Year(tk.Frame):# third componenet
         self.label.image=self.photo
         self.label.place(x=0,y=0)
 # giving info to the user before starting they start the quiz by pressing one of the buttons         
-        self.title_label = tk.Label(self, text="Press on one of these buttons\nthat state the year level you\n are in to practise for your NCEA\n Exams. A mix of 10 questions will\n be asked from different categories.", bg = "#D5E8D4", font=("Arial", 10))
-        self.title_label.place(x=15, y=180)        
+        self.title_label = tk.Label(self, text="Press on one of these buttons\nthat state the year level you\n are in to practise for your NCEA\n Exams. A mix of 8 questions will\n be asked from different categories.", bg = "#D5E8D4", font=("Arial", 10))
+        self.title_label.place(x=15, y=180)  
+#level1 ncea questions/ quiz button
         self.level1_button = tk.Button(self, text="LEVEL 1", pady=13, padx=17,  bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Quizone))
         self.level1_button.place(x=301, y=90)
-
+#level2 ncea questions/ quiz button
         self.level2_button = tk.Button(self, text="LEVEL 2", pady=13, padx=17,bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Quiztwo))
         self.level2_button.place(x=301, y=180)
-
+#level3 ncea questions/ quiz button
         self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", pady=13, padx=17, font=("Arial", 15), command=lambda: controller.show_frame(Quizthree))
         self.level3_button.place(x=301, y=270)
-        
+# this back button will go back to the login page      
         self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
         self.back_button.place(x=10, y=5)
 
@@ -179,6 +180,51 @@ class Quizone(tk.Frame):
                 1,
                 ],
             5: [
+                'QUESTION: what is the colour of a pear?  ',
+                ' yellow ',
+                ' white ',
+                ' black ',
+                ' green ',
+                ' green ',
+                4,
+                ],
+            6: [
+                'QUESTION: what is the colour of an apple  ',
+                ' green',
+                ' yellow',
+                ' red',
+                ' orange',
+                ' red',
+                3,
+                ],
+            7: [
+                'QUESTION: what is the colour of a grape?      ',
+                ' purple ',
+                ' yellow ',
+                ' brown ',
+                ' black ',
+                ' purple ',
+                1,
+                ],
+            8: [
+                'QUESTION: what is the color of a banana??      ',
+                ' red ',
+                ' yellow ',
+                ' blue ',
+                ' pink ',
+                ' yellow ',
+                2,
+                ],
+            9: [
+                'QUESTION: what is the colour of a peach?  ',
+                ' peach ',
+                ' beige ',
+                ' orange ',
+                ' pink ',
+                ' peach ',
+                1,
+                ],
+            10: [
                 'QUESTION: what is the colour of a pear?  ',
                 ' yellow ',
                 ' white ',
@@ -293,7 +339,7 @@ class Quizone(tk.Frame):
         global score  # this score us there to be acessed to everyone
         scr_label = self.score_label  # shhowing the score because it will be different each time a question is answered
         choice = self.var1.get()  # get the users choice
-        if len(asked) > 4:  # to determine it its the last question to end the quiz after
+        if len(asked) > 9:  # to determine it its the last question to end the quiz after
             if choice == self.questions_answers[qnum][6]:  # cheking the qnum has the correct answer that is stored in index 6
                 score += 1  # adding a point after each correct answer
                 scr_label.configure(text=score)  # it will change the score to the new score each time
@@ -309,8 +355,7 @@ class Quizone(tk.Frame):
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-           #https://stackoverflow.com/questions/15235794/calling-tkinter-frame-controller-from-function-rather-then-button-command  
-               # controller.show_frame(Ending)  # to open endscreen when quiz is completed
+           
         else:
 
             if choice == 0:  # if the user doesnt select and option
@@ -398,6 +443,51 @@ class Quiztwo(tk.Frame):
                 ],
             5: [
                 'QUESTION:e colour of a pear?  ',
+                ' yellow ',
+                ' white ',
+                ' black ',
+                ' green ',
+                ' green ',
+                4,
+                ],
+            6: [
+                'QUESTION: what is the colour of an apple  ',
+                ' green',
+                ' yellow',
+                ' red',
+                ' orange',
+                ' red',
+                3,
+                ],
+            7: [
+                'QUESTION: what is the colour of a grape?      ',
+                ' purple ',
+                ' yellow ',
+                ' brown ',
+                ' black ',
+                ' purple ',
+                1,
+                ],
+            8: [
+                'QUESTION: what is the color of a banana??      ',
+                ' red ',
+                ' yellow ',
+                ' blue ',
+                ' pink ',
+                ' yellow ',
+                2,
+                ],
+            9: [
+                'QUESTION: what is the colour of a peach?  ',
+                ' peach ',
+                ' beige ',
+                ' orange ',
+                ' pink ',
+                ' peach ',
+                1,
+                ],
+            10: [
+                'QUESTION: what is the colour of a pear?  ',
                 ' yellow ',
                 ' white ',
                 ' black ',
@@ -511,7 +601,7 @@ class Quiztwo(tk.Frame):
         global score  # this score us there to be acessed to everyone
         scr_label = self.score_label  # shhowing the score because it will be different each time a question is answered
         choice = self.var1.get()  # get the users choice
-        if len(asked) > 4:  # to determine it its the last question to end the quiz after
+        if len(asked) > 9:  # to determine it its the last question to end the quiz after
             if choice == self.questions_answers[qnum][6]:  # cheking the qnum has the correct answer that is stored in index 6
                 score += 1  # adding a point after each correct answer
                 scr_label.configure(text=score)  # it will change the score to the new score each time
@@ -620,6 +710,51 @@ class Quizthree(tk.Frame):
                 ' green ',
                 4,
                 ],
+            6: [
+                'QUESTION: what is the colour of an apple  ',
+                ' green',
+                ' yellow',
+                ' red',
+                ' orange',
+                ' red',
+                3,
+                ],
+            7: [
+                'QUESTION: what is the colour of a grape?      ',
+                ' purple ',
+                ' yellow ',
+                ' brown ',
+                ' black ',
+                ' purple ',
+                1,
+                ],
+            8: [
+                'QUESTION: what is the color of a banana??      ',
+                ' red ',
+                ' yellow ',
+                ' blue ',
+                ' pink ',
+                ' yellow ',
+                2,
+                ],
+            9: [
+                'QUESTION: what is the colour of a peach?  ',
+                ' peach ',
+                ' beige ',
+                ' orange ',
+                ' pink ',
+                ' peach ',
+                1,
+                ],
+            10: [
+                'QUESTION: what is the colour of a pear?  ',
+                ' yellow ',
+                ' white ',
+                ' black ',
+                ' green ',
+                ' green ',
+                4,
+                ],
             }
 
         randomiser()
@@ -726,7 +861,7 @@ class Quizthree(tk.Frame):
         global score  # this score us there to be acessed to everyone
         scr_label = self.score_label  # shhowing the score because it will be different each time a question is answered
         choice = self.var1.get()  # get the users choice
-        if len(asked) > 4:  # to determine it its the last question to end the quiz after
+        if len(asked) > 9:  # to determine it its the last question to end the quiz after
             if choice == self.questions_answers[qnum][6]:  # cheking the qnum has the correct answer that is stored in index 6
                 score += 1  # adding a point after each correct answer
                 scr_label.configure(text=score)  # it will change the score to the new score each time
@@ -844,7 +979,7 @@ class Application(tk.Tk):
         self.window.grid_columnconfigure(0, minsize = 800)
         
         self.frames = {}
-        for F in (Start, Year, Level1, Level2, Level3, Quizone, Quiztwo, Quizthree, Ending ):
+        for F in (Start, Year,Quizone, Quiztwo, Quizthree, Ending ):
             frame = F(self.window, self)
             self.frames[F] = frame
             frame.grid(row = 0, column=0, sticky="nsew")
