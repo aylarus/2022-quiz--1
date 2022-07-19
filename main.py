@@ -1,30 +1,53 @@
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk  
-import random 
+from PIL import Image, ImageTk # adding an image to the program 
+import random #randomising the questions 
+
+
+#category
+
+
+
+names = []
+asked = []
+score = 0
+
+
+# 10 questions for the quiz with the 4 different choices and the answer
+
+def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
+    global qnum
+    qnum = random.randint(1, 5)#randomising 10 different questions that will be asked in the questions component/ window
+    if qnum not in asked:
+        asked.append(qnum)
+    elif qnum in asked:
+        randomiser()
 
       
-class Start(tk.Frame):
+class Start(tk.Frame):#first component:login page 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-
+      
+# this is the border of the quiz for the login page 
         self.border = tk.LabelFrame(self, text='SIGN IN', bg='#D5E8D4', font=("Arial", 20))
         self.border.pack(fill="both", expand="yes", padx=0, pady=0)
-
+#intorducting the user to the program/ welcoming them 
         self.heading_label = tk.Label(self.border, text="Welcome to the ncea maths quiz helper", font=("Arial Bold", 9), bg='#D5E8D4')
         self.heading_label.place(x=8, y=0)
-        
+#asking th user for thier user name to login to the quiz       
         self. user_label = tk.Label(self.border, text="Username:", font=("Arial Bold", 15), bg='#D5E8D4')
         self.user_label.place(x=10, y=70)
         self.user_entry = tk.Entry(self.border, width = 23, bd = 3)
         self.user_entry.place(x=180, y=70)
-        
+#asking for the password to compelete the login process 
+                
         self.password_label = tk.Label(self.border, text="Password:", font=("Arial Bold", 15), bg='#D5E8D4')
         self.password_label.place(x=10, y=150)
         self.password_entry = tk.Entry(self.border, width = 23, show='*', bd = 3)
         self.password_entry.place(x=180, y=150)
         
-        def verify():
+        def verify(): # if the user does not have an account or types in an incorrect user name of password error messeges will appear
+     
             try:
                 with open("users.txt", "r") as f:
                     info = f.readlines()
@@ -40,31 +63,32 @@ class Start(tk.Frame):
             except:
                 messagebox.showinfo("Error", "Couldnt open next file")
      
-         
+# the enter button is after writing the username and password to take the user to the next page which is asking the user what year level they are in/ what year level questions they want to do         
         self.enterbutton = tk.Button(self.border,  pady=12, padx=16, text= "ENTER", font=("Arial", 15), bg= "white", command=verify)
         self.enterbutton.place(x=310, y=257)
         
-        def signup():
+        def signup():# second componenet:if the user doe not have any login detail/ an account they can make an account 
             signup_window = tk.Tk()
             signup_window.resizable(0,0)
             signup_window.configure(bg="#D5E8D4")
             signup_window.title("SIGN UP")
+ # asking the user for a user name to use for thier account 
             sgn_name_label = tk.Label(signup_window, text="Username:", font=("Arial",13), bg="#D5E8D4")
             sgn_name_label.place(x=10, y=10)
             sgn_name_entry = tk.Entry(signup_window, width=23, bd=3)
             sgn_name_entry.place(x=180, y=10)
-            
+#asking for a password             
             sgn_password_label = tk.Label(signup_window, text="Password:", font=("Arial",13), bg="#D5E8D4")
             sgn_password_label.place(x=10, y=60)
             sgn_password_entry = tk.Entry(signup_window, width=23, show="*", bd=3)
             sgn_password_entry.place(x =180, y=60)
-            
+#confirming the password before making an account is complete             
             confirm_password_label = tk.Label(signup_window, text="Confirm Password:", font=("Arial",13), bg="#D5E8D4")
             confirm_password_label.place(x=10, y=110)
             confirm_password_entry = tk.Entry(signup_window, width=23, show="*", bd=3)
             confirm_password_entry.place(x =180, y=110)
             
-            def check():
+            def check():# error messeges will appear if the user has typed in 2 different passwords in the password boz and confirm password box and an info box will welcome the user/ tell them they have been registered 
                 if sgn_name_entry.get()!="" or sgn_password_entry.get()!="" or confirm_password_entry.get()!="":
                     if sgn_password_entry.get()==confirm_password_entry.get():
                         with open("users.txt", "a") as f:
@@ -75,138 +99,42 @@ class Start(tk.Frame):
                         messagebox.showinfo("Error","please fill in the boxes correctly!!")
                 else:
                     messagebox.showinfo("Error", "Please fill in the boxes!")
-                    
+#the reister button is the click after typing in detail to make an account to register                    
             self.signup_button = tk.Button(signup_window, text="REGISTER", font=("Arial",15), bg="white", command=check, pady=12, padx=18)
             self.signup_button.place(x =270, y=160)
             
-            signup_window.geometry("430x240")
+            signup_window.geometry("430x240")#size of the reisgister page 
             signup_window.mainloop()
-            
+# the sign up button is in the login page if the user doesnt have an acoount registered to create one         
         self.signup_button = tk.Button(self, text="SIGN UP", bg = "white", pady=12, padx=10, font=("Arial",15), command=signup)
         self.signup_button.place(x=15, y=290)
 
 
     
         
-class Year(tk.Frame):
+class Year(tk.Frame):# third componenet 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        
+#this is the background image used for the layout of my quiz as the white part of the image will be where i place the buttons and the green is for the text and the rest of the things        
         load = Image.open("maths2.jpg")
         self.photo = ImageTk.PhotoImage(load)
         self.label = tk.Label(self, image=self.photo)
         self.label.image=self.photo
         self.label.place(x=0,y=0)
-        
-        self.title_label = tk.Label(self, text="WHAT IS YOUR YEAR LEVEL?", bg = "#D5E8D4", font=("Arial", 10))
-      
-        self.title_label.place(x=40, y=195)        
-        self.level1_button = tk.Button(self, text="LEVEL 1", pady=13, padx=17,  bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Level1))
+# giving info to the user before starting they start the quiz by pressing one of the buttons         
+        self.title_label = tk.Label(self, text="Press on one of these buttons\nthat state the year level you\n are in to practise for your NCEA\n Exams. A mix of 10 questions will\n be asked from different categories.", bg = "#D5E8D4", font=("Arial", 10))
+        self.title_label.place(x=15, y=180)        
+        self.level1_button = tk.Button(self, text="LEVEL 1", pady=13, padx=17,  bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Quizone))
         self.level1_button.place(x=301, y=90)
 
-        self.level2_button = tk.Button(self, text="LEVEL 2", pady=13, padx=17,bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Level2))
+        self.level2_button = tk.Button(self, text="LEVEL 2", pady=13, padx=17,bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Quiztwo))
         self.level2_button.place(x=301, y=180)
 
-        self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", pady=13, padx=17, font=("Arial", 15), command=lambda: controller.show_frame(Level3))
+        self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", pady=13, padx=17, font=("Arial", 15), command=lambda: controller.show_frame(Quizthree))
         self.level3_button.place(x=301, y=270)
         
         self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
         self.back_button.place(x=10, y=5)
-      
-class Level1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        
-        load = Image.open("maths2.jpg")
-        self.photo = ImageTk.PhotoImage(load)
-        self.label = tk.Label(self, image=self.photo)
-        self.label.image=self.photo
-        self.label.place(x=0,y=0)
-        
-        self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
-        self.title_label.place(x=37, y=195)        
-
-        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quiztwo))
-        self.probability_button.place(x=301, y=180)
-
-        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quizthree))
-        self.algebra_button.place(x=301, y=270)
-
-        self.calculus_button = tk.Button(self, text="CALCULUS", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Quizone))
-        self.calculus_button.place(x=301, y=90)
-      
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
-        self.back_button.place(x=12, y=5)
- 
-
-class Level2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        
-        load = Image.open("maths2.jpg")
-        self.photo = ImageTk.PhotoImage(load)
-        self.label = tk.Label(self, image=self.photo)
-        self.label.image=self.photo
-        self.label.place(x=0,y=0)
-        
-        self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
-        self.title_label.place(x=37, y=195)   
-      
-        self.calculus_button = tk.Button(self, text="CALCULUS", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Quizone))
-        self.calculus_button.place(x=301, y=90)
-
-        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quizone))
-        self.probability_button.place(x=301, y=180)
-
-        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quizone))
-        self.algebra_button.place(x=301, y=270)
-        
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
-        self.back_button.place(x=12, y=5)
-
- 
-
-class Level3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        
-        load = Image.open("maths2.jpg")
-        self.photo = ImageTk.PhotoImage(load)
-        self.label = tk.Label(self, image=self.photo)
-        self.label.image=self.photo
-        self.label.place(x=0,y=0)
-        
-        self.title_label = tk.Label(self, text="WHAT TYPE OF MATHS QUESTIONS \n WOULD YOU LIKE TO DO?", bg = "#D5E8D4", font=("Arial Bold", 10))
-        self.title_label.place(x=37, y=195)   
-      
-        self.calculus_button = tk.Button(self, text="CALCULUS", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Quizone))
-        self.calculus_button.place(x=301, y=90)
-
-        self.probability_button = tk.Button(self, text="PROBABILITY", padx=15, pady=16, bg="#D5E8D4", font=("Arial", 10), command=lambda: controller.show_frame(Quiztwo))
-        self.probability_button.place(x=301, y=180)
-
-        self.algebra_button = tk.Button(self, text=" ALGEBRA ", bg="#D5E8D4",  padx=15,font=("Arial", 12), pady=14, command=lambda: controller.show_frame(Quizthree))
-        self.algebra_button.place(x=301, y=270)
-        
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
-        self.back_button.place(x=12, y=5)
-
-
-
-names = []
-asked = []
-score = 0
-
-
-# 10 questions for the quiz with the 4 different choices and the answer
-
-def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
-    global qnum
-    qnum = random.randint(1, 5)
-    if qnum not in asked:
-        asked.append(qnum)
-    elif qnum in asked:
-        randomiser()
 
 
 class Quizone(tk.Frame):
@@ -424,20 +352,6 @@ class Quizone(tk.Frame):
             ending_window.mainloop()
     
 
-names = []
-asked = []
-score = 0
-
-
-# 10 questions for the quiz with the 4 different choices and the answer
-
-def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
-    global qnum
-    qnum = random.randint(1, 5)
-    if qnum not in asked:
-        asked.append(qnum)
-    elif qnum in asked:
-        randomiser()
 
 
 
@@ -655,21 +569,6 @@ class Quiztwo(tk.Frame):
             ending_window.geometry("430x420")
             ending_window.mainloop()
     
-
-names = []
-asked = []
-score = 0
-
-
-# 10 questions for the quiz with the 4 different choices and the answer
-
-def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
-    global qnum
-    qnum = random.randint(1, 5)
-    if qnum not in asked:
-        asked.append(qnum)
-    elif qnum in asked:
-        randomiser()
 
 class Quizthree(tk.Frame):
     def __init__(self, parent, controller):
