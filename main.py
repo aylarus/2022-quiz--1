@@ -138,54 +138,54 @@ class Year(tk.Frame):# third componenet
         self.back_button.place(x=10, y=5)
 
 
-class Quizone(tk.Frame):
+class Quizone(tk.Frame): # questions for levelone questions
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#D5E8D4")
         self.controller = controller
         self.questions_answers = {#questions to be changed later 
             1: [
-                'QUESTION: what is the colour of an apple  ',
-                ' green',
-                ' yellow',
-                ' red',
-                ' orange',
-                ' red',
+                'ALGERBA: Find the value of 2x2 – 3xy\nwhen x = –3 and y = 4.',
+                'a) 55                ',
+                'b) 65                ',
+                'c) 54                ',
+                'd) 75                ',
+                'c) 54                ',
                 3,
                 ],
             2: [
-                'QUESTION: what is the colour of a grape?      ',
-                ' purple ',
-                ' yellow ',
-                ' brown ',
-                ' black ',
-                ' purple ',
+                'ALGEBRA: Solve the equation: w4 – 18w2 + 81 = 0.',
+                'a)3                ',
+                'b)2                ',
+                'c)1                ',
+                'd)56               ',
+                'a)3                ',
                 1,
                 ],
             3: [
-                'QUESTION: what is the color of a banana??      ',
-                ' red ',
-                ' yellow ',
-                ' blue ',
-                ' pink ',
-                ' yellow ',
+                'ALGEBRA: Solve the inequality:\n (3x + 2)(2x – 1) ≤ (6x + 1)(x – 3)  ',
+                'a) x = - 3/18      ',
+                'b) x ≤ - 1/18      ',
+                'c) x ≤ 1            ',
+                'd) x = 0.52        ',
+                'b) x ≤ − 1/18      ',
                 2,
                 ],
             4: [
-                'QUESTION: what is the colour of a peach?  ',
-                ' peach ',
-                ' beige ',
-                ' orange ',
-                ' pink ',
-                ' peach ',
+                'ALGEBRA: What is the area of a square with sides of length\n (3x + 5) cm? Give your answer interms of x \nand in the form ax2 + bx + c. ',
+                'a) 9x^2 + 30x + 25 ',
+                'b) 8x^2 + 20x + 66 ',
+                'c) 7x^2 + 10x + 59 ',
+                'd) 9x^2 + 35x + 15 ',
+                'a) 9x^2 + 30x + 25 ',
                 1,
                 ],
             5: [
-                'QUESTION: what is the colour of a pear?  ',
-                ' yellow ',
-                ' white ',
-                ' black ',
-                ' green ',
-                ' green ',
+                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16 ',
+                'a) x = 0             ',
+                'b) x = 1             ',
+                'c) x = 4             ',
+                'd) x = 3             ',
+                'd) x = 3             ',
                 4,
                 ],
             6: [
@@ -257,7 +257,7 @@ class Quizone(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
         self.rb1.grid(row=2, pady=3, padx=5)  #
 
@@ -272,9 +272,9 @@ class Quizone(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
-        self.rb2.grid(row=3, pady=3, padx=25)
+        self.rb2.grid(row=3, pady=3, padx=5)
 
         # radio button 3 so the third choices will appear
 
@@ -287,9 +287,9 @@ class Quizone(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
-        self.rb3.grid(row=4, pady=3, padx=25)
+        self.rb3.grid(row=4, pady=3, padx=5)
 
         # radio button 4 so the forth choices will appear
 
@@ -301,10 +301,10 @@ class Quizone(tk.Frame):
             value=4,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             variable=self.var1,
             )
-        self.rb4.grid(row=5, pady=3, padx=25)
+        self.rb4.grid(row=5, pady=3, padx=5)
 
 
         # score label is used to show how much the end user has scored and if they are loosing any points
@@ -385,6 +385,7 @@ class Quizone(tk.Frame):
             ending_window.resizable(0,0)
             ending_window.configure(bg="#D5E8D4")
             ending_window.title("End")
+# this is a page before the ending page to say that the user has completed the quiz 
             ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
             ending_name_label.place(x=30, y=150)
             def check():
@@ -399,100 +400,99 @@ class Quizone(tk.Frame):
 
 
 
-
-class Quiztwo(tk.Frame):
+class Quiztwo(tk.Frame): # questions for leveltwo questions
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#D5E8D4")
         self.controller = controller
         self.questions_answers = {#questions to be changed later 
             1: [
-                'QUESTION: what   ',
-                ' green',
-                ' yellow',
-                ' red',
-                ' orange',
-                ' red',
+                'ALGERBA: Factorise 6x2 + 13x – 15.',
+                'a) (7x – 5)(x + 1)                 ',
+                'b) (5x – 5)(x + 4)                 ',
+                'c) (6x – 5)(x + 3)                 ',
+                'd) (3x – 5)(x + 7)                 ',
+                'c) (6x – 5)(x + 3)                 ',
                 3,
                 ],
             2: [
-                'QUESTION: what r of a grape?      ',
-                ' purple ',
-                ' yellow ',
-                ' brown ',
-                ' black ',
-                ' purple ',
+                'ALGEBRA: solve: logx (36) = 2',
+                'a)x = 6                ',
+                'b)x = 0                ',
+                'c)x = 1                ',
+                'd)x = 7                ',
+                'a)x = 6                ',
                 1,
                 ],
             3: [
-                'QUESTION: \lor of a banana??      ',
-                ' red ',
-                ' yellow ',
-                ' blue ',
-                ' pink ',
-                ' yellow ',
+                'ALGEBRA: Solve the inequality:\n (3x + 2)(2x – 1) ≤ (6x + 1)(x – 3)  ',
+                'a) x = - 3/18      ',
+                'b) x ≤ - 1/18      ',
+                'c) x ≤ 1            ',
+                'd) x = 0.52        ',
+                'b)x ≤ − 1/18       ',
                 2,
                 ],
             4: [
-                'QUESTION: colour of a peach?  ',
-                ' peach ',
-                ' beige ',
-                ' orange ',
-                ' pink ',
-                ' peach ',
+                'ALGEBRA: Factorise fully fm – 6gn + 3fn – 2gm. ',
+                'a) (m + 3n)(f – 2g)   ',
+                'b) (m + 6n)(f – 4g) ',
+                'c) (m + 3n)(f – 4g) ',
+                'd) (m + 6n)(f – 1g)  ',
+                'a) (m + 3n)(f – 2g)   ',
                 1,
                 ],
             5: [
-                'QUESTION:e colour of a pear?  ',
-                ' yellow ',
-                ' white ',
-                ' black ',
-                ' green ',
-                ' green ',
+                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16 ',
+                ' a)x = 0             ',
+                ' b)x = 1             ',
+                ' c) x = 4             ',
+                ' d)x = 3             ',
+                ' d)x = 3             ',
                 4,
                 ],
             6: [
-                'QUESTION: what is the colour of an apple  ',
-                ' green',
-                ' yellow',
-                ' red',
-                ' orange',
-                ' red',
+                'ALGEBRA: solve: log5(x) + log5(2x) = 4. ',
+                'a)  x = 18.67',
+                'b)  x = 16.78',
+                'c)  x = 17.68',
+                'd)  x = 17',
+                'c)  x = 17.68',
                 3,
                 ],
             7: [
-                'QUESTION: what is the colour of a grape?      ',
-                ' purple ',
-                ' yellow ',
-                ' brown ',
-                ' black ',
-                ' purple ',
+                'CALCULUS:  Find the equation of the tangent to the curve of y = x2 + 5x at the point (2,14). ',
+                'a) g(x) = 9x – 4 ',
+                'b) g(x) = 8x – 2',
+                'c) g(x) = 9x – 4',
+                'd) g(y) = 8x – 2 ',
+                'a) g(x) = 9x – 4 ',
                 1,
                 ],
             8: [
-                'QUESTION: what is the color of a banana??      ',
-                ' red ',
-                ' yellow ',
-                ' blue ',
-                ' pink ',
-                ' yellow ',
+                'CALCULUS: Another function is given by h (x) = 0.5x^2 + 3x – 1. Find the x-coordinate of the point on the graph of this function where the gradient is 5.    ',
+                'a) x = 1 ',
+                'b) x = 2 ',
+                'c) x = 11 ',
+                'd) x = 8 ',
+                'b) x = 2 ',
                 2,
                 ],
             9: [
-                'QUESTION: what is the colour of a peach?  ',
-                ' peach ',
-                ' beige ',
-                ' orange ',
-                ' pink ',
-                ' peach ',
+                'CALCULUS: The speed of an object is given by v (t) = 3t 2 – 5t m s–1, where t is measured in seconds. What is the object’s acceleration when t = 2?',
+                'a) a(2) = 7  ',
+                'b) a(4) = 3 ',
+                'c) a(2) = 10 ',
+                'd) a(4) = 9 ',
+                'a) a(2) = 7  ',
                 1,
                 ],
             10: [
-                'QUESTION: what is the colour of a pear?  ',
-                ' yellow ',
-                ' white ',
-                ' black ',
-                ' green ',
-                ' green ',
+                'CALCULUS: The function f(x) = kx3 + 9x has a tangent with a gradient of 15 where x = 2. Find the value of k. ',
+                'a) k = 1 ',
+                'b) k = 0 ',
+                'c) k = 5 ',
+                'd) k = 0.5 ',
+                'd) k = 0.5 ',
                 4,
                 ],
             }
@@ -519,7 +519,7 @@ class Quiztwo(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
         self.rb1.grid(row=2, pady=3, padx=5)  #
 
@@ -534,9 +534,9 @@ class Quiztwo(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
-        self.rb2.grid(row=3, pady=3, padx=25)
+        self.rb2.grid(row=3, pady=3, padx=5)
 
         # radio button 3 so the third choices will appear
 
@@ -549,9 +549,9 @@ class Quiztwo(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
-        self.rb3.grid(row=4, pady=3, padx=25)
+        self.rb3.grid(row=4, pady=3, padx=5)
 
         # radio button 4 so the forth choices will appear
 
@@ -563,10 +563,10 @@ class Quiztwo(tk.Frame):
             value=4,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             variable=self.var1,
             )
-        self.rb4.grid(row=5, pady=3, padx=25)
+        self.rb4.grid(row=5, pady=3, padx=5)
 
 
         # score label is used to show how much the end user has scored and if they are loosing any points
@@ -617,8 +617,7 @@ class Quiztwo(tk.Frame):
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-           #https://stackoverflow.com/questions/15235794/calling-tkinter-frame-controller-from-function-rather-then-button-command  
-               # controller.show_frame(Ending)  # to open endscreen when quiz is completed
+           
         else:
 
             if choice == 0:  # if the user doesnt select and option
@@ -648,6 +647,7 @@ class Quiztwo(tk.Frame):
             ending_window.resizable(0,0)
             ending_window.configure(bg="#D5E8D4")
             ending_window.title("End")
+# this is a page before the ending page to say that the user has completed the quiz
             ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
             ending_name_label.place(x=30, y=150)
             def check():
@@ -660,99 +660,100 @@ class Quiztwo(tk.Frame):
             ending_window.mainloop()
     
 
-class Quizthree(tk.Frame):
+
+class Quizthree(tk.Frame): # questions for levelthree questions
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#D5E8D4")
         self.controller = controller
         self.questions_answers = {#questions to be changed later 
             1: [
-                'QUESTION: what   ',
-                ' green',
-                ' yellow',
-                ' red',
-                ' orange',
-                ' red',
+                'ALGERBA: Find the value of 2x2 – 3xy\nwhen x = –3 and y = 4.',
+                'a) 55                ',
+                'b) 65                ',
+                'c) 54                ',
+                'd) 75                ',
+                'c) 54                ',
                 3,
                 ],
             2: [
-                'QUESTION: what r of a grape?      ',
-                ' purple ',
-                ' yellow ',
-                ' brown ',
-                ' black ',
-                ' purple ',
+                'ALGEBRA: Solve the equation: w4 – 18w2 + 81 = 0.',
+                'a)3                ',
+                'b)2                ',
+                'c)1                ',
+                'd)56               ',
+                'a)3                ',
                 1,
                 ],
             3: [
-                'QUESTION: \lor of a banana??      ',
-                ' red ',
-                ' yellow ',
-                ' blue ',
-                ' pink ',
-                ' yellow ',
+                'ALGEBRA: Solve the inequality:\n (3x + 2)(2x – 1) ≤ (6x + 1)(x – 3)  ',
+                'a) x = - 3/18      ',
+                'b) x ≤ - 1/18      ',
+                'c) x ≤ 1            ',
+                'd) x = 0.52        ',
+                'b) x ≤ − 1/18      ',
                 2,
                 ],
             4: [
-                'QUESTION: colour of a peach?  ',
-                ' peach ',
-                ' beige ',
-                ' orange ',
-                ' pink ',
-                ' peach ',
+                'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value of k if st = 21 – i. ',
+                'a) k = −5 ',
+                'b) k = −1 ',
+                'c)k = 5 ',
+                'd)k = −0  ',
+                'a) k = −5 ',
                 1,
                 ],
             5: [
-                'QUESTION:e colour of a pear?  ',
-                ' yellow ',
-                ' white ',
-                ' black ',
-                ' green ',
-                ' green ',
+                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16 ',
+                'a) x = 0             ',
+                'b) x = 1             ',
+                'c) x = 4             ',
+                'd) x = 3             ',
+                'd) x = 3             ',
                 4,
                 ],
             6: [
-                'QUESTION: what is the colour of an apple  ',
-                ' green',
-                ' yellow',
-                ' red',
-                ' orange',
-                ' red',
+                'CALCULUS: Given that x – 2 is a factor of 2x3 + qx2 – 17x – 10, find the value of q. ',
+                'a)q=2',
+                'b)q=9',
+                'c)q=7',
+                'd)q=0',
+                'c)q=7',
                 3,
                 ],
             7: [
-                'QUESTION: what is the colour of a grape?      ',
-                ' purple ',
-                ' yellow ',
-                ' brown ',
-                ' black ',
-                ' purple ',
+                'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value of k if st = 21 – i.      ',
+                'a) k = −5 ',
+                'b) k = −5 ',
+                'c) k = −5 ',
+                'd) k = −5 ',
+                'a) k = −5 ',
                 1,
                 ],
             8: [
-                'QUESTION: what is the color of a banana??      ',
-                ' red ',
-                ' yellow ',
-                ' blue ',
-                ' pink ',
-                ' yellow ',
+                'DIFFERENTIATION: Differentiate y = (2x – 5)^4.     ',
+                'a) dy/dx =(8− 2x) ',
+                'b) dy/dx =(3− 2x) ',
+                'c) dy/dx =(6− 4x) ',
+                'd) dy/dx =(1− 1x) ',
+                'b) dy/dx =(3− 2x) ',
                 2,
                 ],
             9: [
-                'QUESTION: what is the colour of a peach?  ',
-                ' peach ',
-                ' beige ',
-                ' orange ',
-                ' pink ',
-                ' peach ',
+                'DIFFERENTIATION: Find the value of x for which the graph of the function y = x 1+ ln x has a stationary point  ',
+                'a) x=1  ',
+                'b) x=10 ',
+                'c) x=2  ',
+                'd) x=0  ',
+                'a) x=1  ',
                 1,
                 ],
             10: [
-                'QUESTION: what is the colour of a pear?  ',
-                ' yellow ',
-                ' white ',
-                ' black ',
-                ' green ',
-                ' green ',
+                'DIFFERENTIATION: Differentiate y = (2x – 5)^4.  ',
+                'a) dy/dx = 8(1x − 2)^2 ',
+                'b) dy/dx = 8(9x − 1)^2 ',
+                'c) dy/dx = 8(8x − 9)^9 ',
+                'd) dy/dx = 8(2x − 5)^3 ',
+                'd) dy/dx = 8(2x − 5)^3 ',
                 4,
                 ],
             }
@@ -779,7 +780,7 @@ class Quizthree(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
         self.rb1.grid(row=2, pady=3, padx=5)  #
 
@@ -794,9 +795,9 @@ class Quizthree(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
-        self.rb2.grid(row=3, pady=3, padx=25)
+        self.rb2.grid(row=3, pady=3, padx=5)
 
         # radio button 3 so the third choices will appear
 
@@ -809,9 +810,9 @@ class Quizthree(tk.Frame):
             variable=self.var1,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             )
-        self.rb3.grid(row=4, pady=3, padx=25)
+        self.rb3.grid(row=4, pady=3, padx=5)
 
         # radio button 4 so the forth choices will appear
 
@@ -823,10 +824,10 @@ class Quizthree(tk.Frame):
             value=4,
             indicator=0,
             pady=10,
-            padx=170,
+            padx=150,
             variable=self.var1,
             )
-        self.rb4.grid(row=5, pady=3, padx=25)
+        self.rb4.grid(row=5, pady=3, padx=5)
 
 
         # score label is used to show how much the end user has scored and if they are loosing any points
@@ -877,8 +878,7 @@ class Quizthree(tk.Frame):
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-           #https://stackoverflow.com/questions/15235794/calling-tkinter-frame-controller-from-function-rather-then-button-command  
-               # controller.show_frame(Ending)  # to open endscreen when quiz is completed
+           
         else:
 
             if choice == 0:  # if the user doesnt select and option
@@ -908,6 +908,7 @@ class Quizthree(tk.Frame):
             ending_window.resizable(0,0)
             ending_window.configure(bg="#D5E8D4")
             ending_window.title("End")
+# this is a page before the ending page to say that the user has completed the quiz
             ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
             ending_name_label.place(x=30, y=150)
             def check():
@@ -920,26 +921,23 @@ class Quizthree(tk.Frame):
             ending_window.mainloop()
     
 
-
-
-
-class Ending(tk.Frame):
+class Ending(tk.Frame):# ending component/ last page 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#D5E8D4")
-      
+#this is the background image used for the layout of my quiz as the white part of the image will be where i place the buttons and the green is for the text and the rest of the things      
         load = Image.open("maths2.jpg")
         self.photo = ImageTk.PhotoImage(load)
         self.label = tk.Label(self, image=self.photo)
         self.label.image=self.photo
         self.label.place(x=0,y=0)
-        
+# the user score will be seen in this page         
         self.one_label = tk.Label(self, text="Well done your final score is: ", bg = "#D5E8D4", font=("Arial Bold", 10))
         self.one_label.place(x=37, y=255)
-
+# an emoji will be seen the page 
         self.two_label = tk.Label(self, text="(☞ ͡° ͜ʖ ͡°)☞ ", bg = "#D5E8D4", font=("Arial Bold", 25))
         self.two_label.place(x=65, y=100)
 
-      
+# this button will take the user back to the home page       
         self.home_button = tk.Button(self, text="<<Home", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Start))
         self.home_button.place(x=303, y=60)
 
@@ -948,15 +946,19 @@ class Ending(tk.Frame):
             add_window.resizable(0,0)
             add_window.configure(bg="#D5E8D4")
             add_window.title("ANSWERS")
-            add_name_label = tk.Label(add_window, text="Answers", font=("Arial",10), bg="#D5E8D4")
-            add_name_label.place(x=100, y=4)         
+            add_name_label = tk.Label(add_window, text="Answers:", font=("Arial",15), bg="#D5E8D4")
+            add_name_label.place(x=100, y=4) 
+            add_text_label = tk.Label(add_window, text="LEVELONE: 54, w = ±3, 𝑥 ≤ − 1/18\n 9x^2 + 30x + 25, x = 3\n\n\n\n  LEVELTWO:(6x – 5)(x + 3),  x = 6, x ≤ − 1/18\n (m + 3n)(f – 2g), x = 3\nx = 17.68, a(2) = 7, k = 0.5\ng(x) = 9x – 4, x = 2\n\n\n\nLEVELTHREE: 54, w = ±3, X ≤ − 1/18\nx = 3, k = −5, q=7\ndy/dx =(3− 2x), x=1\ndy/dx = 8(2x − 5)^3", font=("Arial",13), bg="#D5E8D4")
+            add_text_label.place(x=2, y=43) 
             def checking():
                 add_window.destroy()
             add_button = tk.Button(add_window, text="<<", command=checking)
             add_button.place(x=10, y=10)
+
             add_window.geometry("430x420")
             add_window.mainloop()
 
+#this button will take the user to see the questions and answers 
         self.answers_button = tk.Button(self, text="Answers to \n Question", padx=15, pady=30, bg="#D5E8D4", font=("Arial", 10), command=add)
         self.answers_button.place(x=303, y=160)
       
@@ -972,12 +974,12 @@ class Application(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         
       
-        self.window = tk.Frame(self)
+        self.window = tk.Frame(self)#tk frame 
         self.window.pack()
         
         self.window.grid_rowconfigure(0, minsize = 500)
         self.window.grid_columnconfigure(0, minsize = 800)
-        
+#these are the different components/ pages of the quiz program         
         self.frames = {}
         for F in (Start, Year,Quizone, Quiztwo, Quizthree, Ending ):
             frame = F(self.window, self)
@@ -989,11 +991,11 @@ class Application(tk.Tk):
     def show_frame(self, page):
         frame = self.frames[page]
         frame.tkraise()
-        self.title("NCEA MATHS QUIZ HELPER")
+        self.title("NCEA MATHS QUIZ HELPER") # title of the frame/ quiz
 
 
 #start of program
 if __name__ == '__main__':           
     app = Application()
-    app.maxsize(430,420)
+    app.maxsize(430,420)#size of the quiz pages 
     app.mainloop()
