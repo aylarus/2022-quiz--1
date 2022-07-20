@@ -505,7 +505,7 @@ class Quizone(tk.Frame):  # questions for levelone questions
         ending_window = tk.Tk()
         ending_window.resizable(0, 0)
         ending_window.configure(bg='#D5E8D4')
-        ending_window.title('End')
+        ending_window.title('NCEA MATHS EXAM HELPER')
 
 # this is a page before the ending page to say that the user has completed the quiz
 
@@ -794,7 +794,7 @@ class Quiztwo(tk.Frame):  # questions for leveltwo questions
         ending_window = tk.Tk()
         ending_window.resizable(0, 0)
         ending_window.configure(bg='#D5E8D4')
-        ending_window.title('End')
+        ending_window.title('NCEA MATHS EXAM HELPER')
 
 # this is a page before the ending page to say that the user has completed the quiz
 
@@ -1135,12 +1135,12 @@ class Ending(tk.Frame):  # ending component/ last page
                                   text=' YOU HAVE NOW FINISHED THE QUIZ '
                                   , bg='#D5E8D4', font=('Arial Bold',
                                   10))
-        self.one_label.place(x=34, y=255)
+        self.one_label.place(x=20, y=255)
 
 # an emoji will be seen the page
 
         self.two_label = tk.Label(self,
-                                  text='( \xcd\xa1\xe2\x9d\x9b\xe2\x80\xaf\xcd\x9c\xca\x96 \xcd\xa1\xe2\x9d\x9b)'
+                                  text='( ͡❛ ͜ʖ ͡❛)'
                                   , bg='#D5E8D4', font=('Arial Bold',
                                   40))
         self.two_label.place(x=60, y=100)
