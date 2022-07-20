@@ -1,12 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk # adding an image to the program 
-import random #randomising the questions 
+from PIL import Image, ImageTk  # adding an image to the program
+import random  # randomising the questions
 
-
-#category
-
-
+# category
 
 names = []
 asked = []
@@ -17,132 +16,244 @@ score = 0
 
 def randomiser():  # this will make the quiz pick the questions at random so if the user wants to do the quiz again it will be the same questions but in a different order now
     global qnum
-    qnum = random.randint(1, 10)#randomising 8 different questions that will be asked in the questions component/ window
+    qnum = random.randint(1, 10)  # randomising 8 different questions that will be asked in the questions component/ window
     if qnum not in asked:
         asked.append(qnum)
     elif qnum in asked:
         randomiser()
 
-      
-class Start(tk.Frame):#first component:login page 
+
+class Start(tk.Frame):  # first component:login page
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-      
-# this is the border of the quiz for the login page 
-        self.border = tk.LabelFrame(self, text='SIGN IN', bg='#D5E8D4', font=("Arial", 20))
-        self.border.pack(fill="both", expand="yes", padx=0, pady=0)
-#intorducting the user to the program/ welcoming them 
-        self.heading_label = tk.Label(self.border, text="Welcome to the ncea maths quiz helper", font=("Arial Bold", 9), bg='#D5E8D4')
+
+# this is the border of the quiz for the login page
+
+        self.border = tk.LabelFrame(self, text='SIGN IN', bg='#D5E8D4',
+                                    font=('Arial', 20))
+        self.border.pack(fill='both', expand='yes', padx=0, pady=0)
+
+# intorducting the user to the program/ welcoming them
+
+        self.heading_label = tk.Label(self.border,
+                text='Welcome to the ncea maths quiz helper',
+                font=('Arial Bold', 9), bg='#D5E8D4')
         self.heading_label.place(x=8, y=0)
-#asking th user for thier user name to login to the quiz       
-        self. user_label = tk.Label(self.border, text="Username:", font=("Arial Bold", 15), bg='#D5E8D4')
+
+# asking th user for thier user name to login to the quiz
+
+        self.user_label = tk.Label(self.border, text='Username:',
+                                   font=('Arial Bold', 15), bg='#D5E8D4'
+                                   )
         self.user_label.place(x=10, y=70)
-        self.user_entry = tk.Entry(self.border, width = 23, bd = 3)
+        self.user_entry = tk.Entry(self.border, width=23, bd=3)
         self.user_entry.place(x=180, y=70)
-#asking for the password to compelete the login process 
-                
-        self.password_label = tk.Label(self.border, text="Password:", font=("Arial Bold", 15), bg='#D5E8D4')
+
+# asking for the password to compelete the login process
+
+        self.password_label = tk.Label(self.border, text='Password:',
+                font=('Arial Bold', 15), bg='#D5E8D4')
         self.password_label.place(x=10, y=150)
-        self.password_entry = tk.Entry(self.border, width = 23, show='*', bd = 3)
+        self.password_entry = tk.Entry(self.border, width=23, show='*',
+                bd=3)
         self.password_entry.place(x=180, y=150)
-        
-        def verify(): # if the user does not have an account or types in an incorrect user name of password error messeges will appear
-     
+
+        def verify():  # if the user does not have an account or types in an incorrect user name of password error messeges will appear
+
             try:
-                with open("users.txt", "r") as f:
+                with open('users.txt', 'r') as f:
                     info = f.readlines()
-                    i  = 0
+                    i = 0
                     for e in info:
-                        self.user_name, self.user_password =e.split(",")
-                        if self.user_name.strip() == self.user_entry.get() and self.user_password.strip() == self.password_entry.get():
+                        (self.user_name, self.user_password) = \
+                            e.split(',')
+                        if self.user_name.strip() \
+                            == self.user_entry.get() \
+                            and self.user_password.strip() \
+                            == self.password_entry.get():
                             controller.show_frame(Year)
                             i = 1
                             break
-                    if i==0:
-                        messagebox.showinfo("Error", "Please write down your correct username and passowrd!")
+                    if i == 0:
+                        messagebox.showinfo('Error',
+                                'Please write down your correct username and passowrd!'
+                                )
             except:
-                messagebox.showinfo("Error", "Couldnt open next file")
-     
-# the enter button is after writing the username and password to take the user to the next page which is asking the user what year level they are in/ what year level questions they want to do         
-        self.enterbutton = tk.Button(self.border,  pady=12, padx=16, text= "ENTER", font=("Arial", 15), bg= "white", command=verify)
+                messagebox.showinfo('Error', 'Couldnt open next file')
+
+# the enter button is after writing the username and password to take the user to the next page which is asking the user what year level they are in/ what year level questions they want to do
+
+        self.enterbutton = tk.Button(
+            self.border,
+            pady=12,
+            padx=16,
+            text='ENTER',
+            font=('Arial', 15),
+            bg='white',
+            command=verify,
+            )
         self.enterbutton.place(x=310, y=257)
-        
-        def signup():# second componenet:if the user doe not have any login detail/ an account they can make an account 
+
+        def signup():  # second componenet:if the user doe not have any login detail/ an account they can make an account
             signup_window = tk.Tk()
-            signup_window.resizable(0,0)
-            signup_window.configure(bg="#D5E8D4")
-            signup_window.title("SIGN UP")
- # asking the user for a user name to use for thier account 
-            sgn_name_label = tk.Label(signup_window, text="Username:", font=("Arial",13), bg="#D5E8D4")
+            signup_window.resizable(0, 0)
+            signup_window.configure(bg='#D5E8D4')
+            signup_window.title('SIGN UP')
+
+ # asking the user for a user name to use for thier account
+
+            sgn_name_label = tk.Label(signup_window, text='Username:',
+                    font=('Arial', 13), bg='#D5E8D4')
             sgn_name_label.place(x=10, y=10)
             sgn_name_entry = tk.Entry(signup_window, width=23, bd=3)
             sgn_name_entry.place(x=180, y=10)
-#asking for a password             
-            sgn_password_label = tk.Label(signup_window, text="Password:", font=("Arial",13), bg="#D5E8D4")
+
+# asking for a password
+
+            sgn_password_label = tk.Label(signup_window,
+                    text='Password:', font=('Arial', 13), bg='#D5E8D4')
             sgn_password_label.place(x=10, y=60)
-            sgn_password_entry = tk.Entry(signup_window, width=23, show="*", bd=3)
-            sgn_password_entry.place(x =180, y=60)
-#confirming the password before making an account is complete             
-            confirm_password_label = tk.Label(signup_window, text="Confirm Password:", font=("Arial",13), bg="#D5E8D4")
+            sgn_password_entry = tk.Entry(signup_window, width=23,
+                    show='*', bd=3)
+            sgn_password_entry.place(x=180, y=60)
+
+# confirming the password before making an account is complete
+
+            confirm_password_label = tk.Label(signup_window,
+                    text='Confirm Password:', font=('Arial', 13),
+                    bg='#D5E8D4')
             confirm_password_label.place(x=10, y=110)
-            confirm_password_entry = tk.Entry(signup_window, width=23, show="*", bd=3)
-            confirm_password_entry.place(x =180, y=110)
-            
-            def check():# error messeges will appear if the user has typed in 2 different passwords in the password boz and confirm password box and an info box will welcome the user/ tell them they have been registered 
-                if sgn_name_entry.get()!="" or sgn_password_entry.get()!="" or confirm_password_entry.get()!="":
-                    if sgn_password_entry.get()==confirm_password_entry.get():
-                        with open("users.txt", "a") as f:
-                            f.write(sgn_name_entry.get()+","+sgn_password_entry.get()+"\n")
-                            messagebox.showinfo("Welcome","You are registered successfully!!")
+            confirm_password_entry = tk.Entry(signup_window, width=23,
+                    show='*', bd=3)
+            confirm_password_entry.place(x=180, y=110)
+
+            def check():  # error messeges will appear if the user has typed in 2 different passwords in the password boz and confirm password box and an info box will welcome the user/ tell them they have been registered
+                if sgn_name_entry.get() != '' \
+                    or sgn_password_entry.get() != '' \
+                    or confirm_password_entry.get() != '':
+                    if sgn_password_entry.get() \
+                        == confirm_password_entry.get():
+                        with open('users.txt', 'a') as f:
+                            f.write(sgn_name_entry.get() + ','
+                                    + sgn_password_entry.get() + '\n')
+                            messagebox.showinfo('Welcome',
+                                    'You are registered successfully!!')
                             signup_window.destroy()
                     else:
-                        messagebox.showinfo("Error","please fill in the boxes correctly!!")
+                        messagebox.showinfo('Error',
+                                'please fill in the boxes correctly!!')
                 else:
-                    messagebox.showinfo("Error", "Please fill in the boxes!")
-#the reister button is the click after typing in detail to make an account to register                    
-            self.signup_button = tk.Button(signup_window, text="REGISTER", font=("Arial",15), bg="white", command=check, pady=12, padx=18)
-            self.signup_button.place(x =270, y=160)
-            
-            signup_window.geometry("430x240")#size of the reisgister page 
+                    messagebox.showinfo('Error',
+                            'Please fill in the boxes!')
+
+# the reister button is the click after typing in detail to make an account to register
+
+            self.signup_button = tk.Button(
+                signup_window,
+                text='REGISTER',
+                font=('Arial', 15),
+                bg='white',
+                command=check,
+                pady=12,
+                padx=18,
+                )
+            self.signup_button.place(x=270, y=160)
+
+            signup_window.geometry('430x240')  # size of the reisgister page
             signup_window.mainloop()
-# the sign up button is in the login page if the user doesnt have an acoount registered to create one         
-        self.signup_button = tk.Button(self, text="SIGN UP", bg = "white", pady=12, padx=10, font=("Arial",15), command=signup)
+
+# the sign up button is in the login page if the user doesnt have an acoount registered to create one
+
+        self.signup_button = tk.Button(
+            self,
+            text='SIGN UP',
+            bg='white',
+            pady=12,
+            padx=10,
+            font=('Arial', 15),
+            command=signup,
+            )
         self.signup_button.place(x=15, y=290)
 
 
-    
-        
-class Year(tk.Frame):# third componenet 
+class Year(tk.Frame):  # third componenet
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-#this is the background image used for the layout of my quiz as the white part of the image will be where i place the buttons and the green is for the text and the rest of the things        
-        load = Image.open("maths2.jpg")
+
+# this is the background image used for the layout of my quiz as the white part of the image will be where i place the buttons and the green is for the text and the rest of the things
+
+        load = Image.open('maths2.jpg')
         self.photo = ImageTk.PhotoImage(load)
         self.label = tk.Label(self, image=self.photo)
-        self.label.image=self.photo
-        self.label.place(x=0,y=0)
-# giving info to the user before starting they start the quiz by pressing one of the buttons         
-        self.title_label = tk.Label(self, text="Press on one of these buttons\nthat state the year level you\n are in to practise for your NCEA\n Exams. A mix of 8 questions will\n be asked from different categories.", bg = "#D5E8D4", font=("Arial", 10))
-        self.title_label.place(x=15, y=180)  
-#level1 ncea questions/ quiz button
-        self.level1_button = tk.Button(self, text="LEVEL 1", pady=13, padx=17,  bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Quizone))
+        self.label.image = self.photo
+        self.label.place(x=0, y=0)
+
+# giving info to the user before starting they start the quiz by pressing one of the buttons
+
+        self.title_label = tk.Label(self,
+                                    text='''Press on one of these buttons
+that state the year level you
+ are in to practise for your NCEA
+ Exams. A mix of 8 questions will
+ be asked from different categories.''',
+                                    bg='#D5E8D4', font=('Arial', 10))
+        self.title_label.place(x=15, y=180)
+
+# level1 ncea questions/ quiz button
+
+        self.level1_button = tk.Button(
+            self,
+            text='LEVEL 1',
+            pady=13,
+            padx=17,
+            bg='#D5E8D4',
+            font=('Arial', 15),
+            command=lambda : controller.show_frame(Quizone),
+            )
         self.level1_button.place(x=301, y=90)
-#level2 ncea questions/ quiz button
-        self.level2_button = tk.Button(self, text="LEVEL 2", pady=13, padx=17,bg="#D5E8D4", font=("Arial", 15), command=lambda: controller.show_frame(Quiztwo))
+
+# level2 ncea questions/ quiz button
+
+        self.level2_button = tk.Button(
+            self,
+            text='LEVEL 2',
+            pady=13,
+            padx=17,
+            bg='#D5E8D4',
+            font=('Arial', 15),
+            command=lambda : controller.show_frame(Quiztwo),
+            )
         self.level2_button.place(x=301, y=180)
-#level3 ncea questions/ quiz button
-        self.level3_button = tk.Button(self, text="LEVEL 3", bg="#D5E8D4", pady=13, padx=17, font=("Arial", 15), command=lambda: controller.show_frame(Quizthree))
+
+# level3 ncea questions/ quiz button
+
+        self.level3_button = tk.Button(
+            self,
+            text='LEVEL 3',
+            bg='#D5E8D4',
+            pady=13,
+            padx=17,
+            font=('Arial', 15),
+            command=lambda : controller.show_frame(Quizthree),
+            )
         self.level3_button.place(x=301, y=270)
-# this back button will go back to the login page      
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Start))
+
+# this back button will go back to the login page
+
+        self.back_button = tk.Button(self, text='  <<  ', bg='white',
+                font=('Arial', 10), command=lambda : \
+                controller.show_frame(Start))
         self.back_button.place(x=10, y=5)
 
 
-class Quizone(tk.Frame): # questions for levelone questions
+class Quizone(tk.Frame):  # questions for levelone questions
+
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg="#D5E8D4")
+        tk.Frame.__init__(self, parent, bg='#D5E8D4')
         self.controller = controller
-        self.questions_answers = {#questions to be changed later 
+        self.questions_answers = {  # questions to be changed later
             1: [
                 'ALGERBA: Find the value of 2x2 – 3xy\nwhen x = –3 and y = 4.',
                 'a) 55                        ',
@@ -162,7 +273,7 @@ class Quizone(tk.Frame): # questions for levelone questions
                 1,
                 ],
             3: [
-                'ALGEBRA: Solve the inequality:\n (3x + 2)(2x – 1) ≤ (6x + 1)(x – 3)  ',
+                'ALGEBRA: Solve the inequality:\n (3x + 2)(2x – 1) ≤ (6x + 1)(x – 3)',
                 'a) x = - 3/18           ',
                 'b) x ≤ - 1/18           ',
                 'c) x ≤ 1/100            ',
@@ -171,7 +282,7 @@ class Quizone(tk.Frame): # questions for levelone questions
                 2,
                 ],
             4: [
-                'ALGEBRA: What is the area of a square with sides of length\n (3x + 5) cm? Give your answer interms of x \nand in the form ax2 + bx + c. ',
+                'ALGEBRA: What is the area of a square with sides of length\n (3x + 5) cm? Give your answer interms of x \nand in the form ax2 + bx + c.',
                 'a)9x^2 + 30x + 25',
                 'b)8x^2 + 20x + 66',
                 'c)7x^2 + 10x + 59',
@@ -180,7 +291,7 @@ class Quizone(tk.Frame): # questions for levelone questions
                 1,
                 ],
             5: [
-                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16 ',
+                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16',
                 'a) x = 0                    ',
                 'b) x = 1                    ',
                 'c) x = 4                    ',
@@ -198,7 +309,7 @@ class Quizone(tk.Frame): # questions for levelone questions
                 3,
                 ],
             7: [
-                'ALGEBRA: Solve the equation 10x^2−27x−9=0 ',
+                'ALGEBRA: Solve the equation 10x^2−27x−9=0',
                 'a) x ≥ 2              ',
                 'b) x ≥ 8              ',
                 'c) x ≥ 5              ',
@@ -216,7 +327,7 @@ class Quizone(tk.Frame): # questions for levelone questions
                 2,
                 ],
             9: [
-                'ALGEBRA: Solve 3x^2+ 2x–8 = 0.  ',
+                'ALGEBRA: Solve 3x^2+ 2x–8 = 0.',
                 'a) x=-2                  ',
                 'b) x=2                   ',
                 'c) x=8                   ',
@@ -240,9 +351,8 @@ class Quizone(tk.Frame): # questions for levelone questions
         # the label of the quiz questions so it can show up on the screen on the 3rd component (named Quiz)
 
         self.question_label = tk.Label(self,
-                                    text=self.questions_answers[qnum][0],
-                                    font=('Arial', '10'),
-                                    bg='#D5E8D4')
+                text=self.questions_answers[qnum][0], font=('Arial',
+                '10'), bg='#D5E8D4')
         self.question_label.grid(row=1, padx=5, pady=50)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
@@ -306,24 +416,31 @@ class Quizone(tk.Frame): # questions for levelone questions
             )
         self.rb4.grid(row=5, pady=3, padx=5)
 
-
         # score label is used to show how much the end user has scored and if they are loosing any points
 
-        self.score_label = tk.Label(self, text='SCORE',
-                                 font=('Arial', '11'),
-                                 bg='white')
+        self.score_label = tk.Label(self, text='SCORE', font=('Arial',
+                                    '11'), bg='white')
         self.score_label.grid(row=7, pady=10, padx=4)
 
         # after the user has pick there choice the confirm button will  go to the next question
 
-        self.confirm_button = tk.Button(self, text='CONFIRM',
-                bg='white',font=('Arial', '12'), command=self.test_progress, padx=10, pady=10)
-        self.confirm_button.grid(row=6,pady=1, padx=100)
+        self.confirm_button = tk.Button(
+            self,
+            text='CONFIRM',
+            bg='white',
+            font=('Arial', '12'),
+            command=self.test_progress,
+            padx=10,
+            pady=10,
+            )
+        self.confirm_button.grid(row=6, pady=1, padx=100)
 
-# this back button will go back to the login page      
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
+# this back button will go back to the login page
+
+        self.back_button = tk.Button(self, text='  <<  ', bg='white',
+                font=('Arial', 10), command=lambda : \
+                controller.show_frame(Year))
         self.back_button.place(x=10, y=5)
-
 
   # the question label to new questions and possible answers as new radio button choices
 
@@ -348,21 +465,21 @@ class Quizone(tk.Frame): # questions for levelone questions
                 scr_label.configure(text=score)  # it will change the score to the new score each time
                 self.confirm_button.config(text='confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-
-                  # to open endscreen when quiz is completed
             else:
 
-                print(choice)
+                  # to open endscreen when quiz is completed
+
+                print (choice)
                 score += 0  # score will stay the same if the questions is answered inccorectly
                 scr_label.configure(text='Incorrect the answer was:  '
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-           
         else:
 
             if choice == 0:  # if the user doesnt select and option
-                self.confirm_button.config(text='Pick an option \n then press this button')  # then the confirm button will say plase try again until the questions is answered and an option is selected
+                self.confirm_button.config(text='Pick an option \n then press this button'
+                        )  # then the confirm button will say plase try again until the questions is answered and an option is selected
                 choice = self.var1.get()  # still get the answer if they chose it
             else:
 
@@ -377,37 +494,55 @@ class Quizone(tk.Frame): # questions for levelone questions
 
              # if the choice was inccorect
 
-                    print(choice)
+                    print (choice)
                     score += 0
                     scr_label.configure(text='Incorrect the answer was:'
                              + self.questions_answers[qnum][5])  # telling the correct answer
                     self.confirm_button.config(text='Confirm')
                     self.questions_setup()  # moving to the next question
+
     def ending(self):
-            ending_window = tk.Tk()
-            ending_window.resizable(0,0)
-            ending_window.configure(bg="#D5E8D4")
-            ending_window.title("End")
-# this is a page before the ending page to say that the user has completed the quiz 
-            ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
-            ending_name_label.place(x=30, y=150)
-            def check():
-              ending_window.destroy()
-              self.controller.show_frame(Ending)
-            ending_button = tk.Button(ending_window, text="Next", bg="white",font=("Arial",15), command=check, pady=12, padx=18)
-            ending_button.place(x=300, y=300)
-#this will only open a window you do what you like in here, you can add frame, image, whatever
-            ending_window.geometry("430x420")
-            ending_window.mainloop()
-    
+        ending_window = tk.Tk()
+        ending_window.resizable(0, 0)
+        ending_window.configure(bg='#D5E8D4')
+        ending_window.title('End')
+
+# this is a page before the ending page to say that the user has completed the quiz
+
+        ending_name_label = tk.Label(ending_window,
+                text='''You have now completed the quiz
+press the next button to to go to
+the ending page ''',
+                font=('Arial', 15), bg='#D5E8D4')
+        ending_name_label.place(x=30, y=150)
+
+        def check():
+            ending_window.destroy()
+            self.controller.show_frame(Ending)
+
+        ending_button = tk.Button(
+            ending_window,
+            text='Next',
+            bg='white',
+            font=('Arial', 15),
+            command=check,
+            pady=12,
+            padx=18,
+            )
+        ending_button.place(x=300, y=300)
+
+# this will only open a window you do what you like in here, you can add frame, image, whatever
+
+        ending_window.geometry('430x420')
+        ending_window.mainloop()
 
 
+class Quiztwo(tk.Frame):  # questions for leveltwo questions
 
-class Quiztwo(tk.Frame): # questions for leveltwo questions
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg="#D5E8D4")
+        tk.Frame.__init__(self, parent, bg='#D5E8D4')
         self.controller = controller
-        self.questions_answers = {#questions to be changed later 
+        self.questions_answers = {  # questions to be changed later
             1: [
                 'ALGERBA: Factorise 6x2 + 13x – 15.',
                 'a)(7x – 5)(x + 1)      ',
@@ -427,7 +562,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 1,
                 ],
             3: [
-                'ALGEBRA: Solve the inequality: (3x + 2)(2x – 1)\n ≤ (6x + 1)(x – 3) ',
+                'ALGEBRA: Solve the inequality: (3x + 2)(2x – 1)\n ≤ (6x + 1)(x – 3)',
                 'a) x = - 3/18            ',
                 'b) x ≤ - 1/18            ',
                 'c) x ≤ 1                    ',
@@ -436,7 +571,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 2,
                 ],
             4: [
-                'ALGEBRA: Factorise fully fm – 6gn + 3fn – 2gm. ',
+                'ALGEBRA: Factorise fully fm – 6gn + 3fn – 2gm.',
                 'a) (m+ 3n)(f– 2g)    ',
                 'b) (m+ 6n)(f– 4g)    ',
                 'c) (m+ 3n)(f– 4g)    ',
@@ -445,7 +580,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 1,
                 ],
             5: [
-                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16 ',
+                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16',
                 ' a)x = 0                    ',
                 ' b)x = 1                    ',
                 ' c)x = 4                    ',
@@ -454,7 +589,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 4,
                 ],
             6: [
-                'ALGEBRA: solve: log5(x) + log5(2x) = 4. ',
+                'ALGEBRA: solve: log5(x) + log5(2x) = 4.',
                 'a)  x = 18.67           ',
                 'b)  x = 16.78           ',
                 'c)  x = 17.68           ',
@@ -463,7 +598,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 3,
                 ],
             7: [
-                'CALCULUS:  Find the equation of the tangent to the curve of\n y = x2 + 5x at the point (2,14). ',
+                'CALCULUS:  Find the equation of the tangent to the curve of\n y = x2 + 5x at the point (2,14).',
                 'a) g(x) = 9x – 4      ',
                 'b) g(x) = 8x – 2      ',
                 'c) g(x) = 9x – 4      ',
@@ -472,7 +607,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 1,
                 ],
             8: [
-                'CALCULUS: Another function is given by h (x) = 0.5x^2 + 3x\n – 1. Find the x-coordinate of the point on the graph of\n this function where the gradient is 5.    ',
+                'CALCULUS: Another function is given by h (x) = 0.5x^2 + 3x\n – 1. Find the x-coordinate of the point on the graph of\n this function where the gradient is 5.',
                 'a) x = 1                  ',
                 'b) x = 2                  ',
                 'c) x = 4                  ',
@@ -490,7 +625,7 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 1,
                 ],
             10: [
-                'CALCULUS: The function f(x) = kx3 + 9x has a tangent with a \ngradient of 15 where x = 2. Find the value of k. ',
+                'CALCULUS: The function f(x) = kx3 + 9x has a tangent with a \ngradient of 15 where x = 2. Find the value of k.',
                 'a) k = 1                   ',
                 'b) k = 0                   ',
                 'c) k = 5                   ',
@@ -505,9 +640,8 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
         # the label of the quiz questions so it can show up on the screen on the 3rd component (named Quiz)
 
         self.question_label = tk.Label(self,
-                                    text=self.questions_answers[qnum][0],
-                                    font=('Arial', '10'),
-                                    bg='#D5E8D4')
+                text=self.questions_answers[qnum][0], font=('Arial',
+                '10'), bg='#D5E8D4')
         self.question_label.grid(row=1, padx=5, pady=50)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
@@ -571,24 +705,31 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
             )
         self.rb4.grid(row=5, pady=3, padx=5)
 
-
         # score label is used to show how much the end user has scored and if they are loosing any points
 
-        self.score_label = tk.Label(self, text='SCORE',
-                                 font=('Arial', '11'),
-                                 bg='white')
+        self.score_label = tk.Label(self, text='SCORE', font=('Arial',
+                                    '11'), bg='white')
         self.score_label.grid(row=7, pady=10, padx=4)
 
         # after the user has pick there choice the confirm button will  go to the next question
 
-        self.confirm_button = tk.Button(self, text='CONFIRM',
-                bg='white',font=('Arial', '12'), command=self.test_progress, padx=10, pady=10)
-        self.confirm_button.grid(row=6,pady=1, padx=100)
+        self.confirm_button = tk.Button(
+            self,
+            text='CONFIRM',
+            bg='white',
+            font=('Arial', '12'),
+            command=self.test_progress,
+            padx=10,
+            pady=10,
+            )
+        self.confirm_button.grid(row=6, pady=1, padx=100)
 
-# this back button will go back to the login page      
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
+# this back button will go back to the login page
+
+        self.back_button = tk.Button(self, text='  <<  ', bg='white',
+                font=('Arial', 10), command=lambda : \
+                controller.show_frame(Year))
         self.back_button.place(x=10, y=5)
-
 
   # the question label to new questions and possible answers as new radio button choices
 
@@ -613,21 +754,21 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
                 scr_label.configure(text=score)  # it will change the score to the new score each time
                 self.confirm_button.config(text='confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-
-                  # to open endscreen when quiz is completed
             else:
 
-                print(choice)
+                  # to open endscreen when quiz is completed
+
+                print (choice)
                 score += 0  # score will stay the same if the questions is answered inccorectly
                 scr_label.configure(text='Incorrect the answer was:  '
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-           
         else:
 
             if choice == 0:  # if the user doesnt select and option
-                self.confirm_button.config(text='Pick an option \n then press this button')  # then the confirm button will say plase try again until the questions is answered and an option is selected
+                self.confirm_button.config(text='Pick an option \n then press this button'
+                        )  # then the confirm button will say plase try again until the questions is answered and an option is selected
                 choice = self.var1.get()  # still get the answer if they chose it
             else:
 
@@ -642,36 +783,55 @@ class Quiztwo(tk.Frame): # questions for leveltwo questions
 
              # if the choice was inccorect
 
-                    print(choice)
+                    print (choice)
                     score += 0
                     scr_label.configure(text='Incorrect the answer was:'
                              + self.questions_answers[qnum][5])  # telling the correct answer
                     self.confirm_button.config(text='Confirm')
                     self.questions_setup()  # moving to the next question
+
     def ending(self):
-            ending_window = tk.Tk()
-            ending_window.resizable(0,0)
-            ending_window.configure(bg="#D5E8D4")
-            ending_window.title("End")
+        ending_window = tk.Tk()
+        ending_window.resizable(0, 0)
+        ending_window.configure(bg='#D5E8D4')
+        ending_window.title('End')
+
 # this is a page before the ending page to say that the user has completed the quiz
-            ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
-            ending_name_label.place(x=30, y=150)
-            def check():
-              ending_window.destroy()
-              self.controller.show_frame(Ending)
-            ending_button = tk.Button(ending_window, text="Next", bg="white",font=("Arial",15), command=check, pady=12, padx=18)
-            ending_button.place(x=300, y=300)
-#this will only open a window you do what you like in here, you can add frame, image, whatever
-            ending_window.geometry("430x420")
-            ending_window.mainloop()
-    
+
+        ending_name_label = tk.Label(ending_window,
+                text='''You have now completed the quiz
+press the next button to to go to
+the ending page ''',
+                font=('Arial', 15), bg='#D5E8D4')
+        ending_name_label.place(x=30, y=150)
+
+        def check():
+            ending_window.destroy()
+            self.controller.show_frame(Ending)
+
+        ending_button = tk.Button(
+            ending_window,
+            text='Next',
+            bg='white',
+            font=('Arial', 15),
+            command=check,
+            pady=12,
+            padx=18,
+            )
+        ending_button.place(x=300, y=300)
+
+# this will only open a window you do what you like in here, you can add frame, image, whatever
+
+        ending_window.geometry('430x420')
+        ending_window.mainloop()
 
 
-class Quizthree(tk.Frame): # questions for levelthree questions
+class Quizthree(tk.Frame):  # questions for levelthree questions
+
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg="#D5E8D4")
+        tk.Frame.__init__(self, parent, bg='#D5E8D4')
         self.controller = controller
-        self.questions_answers = {#questions to be changed later 
+        self.questions_answers = {  # questions to be changed later
             1: [
                 'ALGERBA: Find the value of 2x2 – 3xy when x = –3 and y = 4.',
                 'a) 55                     ',
@@ -691,7 +851,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 1,
                 ],
             3: [
-                'ALGEBRA: Solve the inequality: (3x + 2)\n(2x – 1) ≤ (6x + 1)(x – 3)  ',
+                'ALGEBRA: Solve the inequality: (3x + 2)\n(2x – 1) ≤ (6x + 1)(x – 3)',
                 'a) x = - 3/18           ',
                 'b) x ≤ - 1/18           ',
                 'c) x ≤ 1                  ',
@@ -700,7 +860,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 2,
                 ],
             4: [
-                'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value\n of k if st = 21 – i. ',
+                'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value\n of k if st = 21 – i.',
                 'a) k = −5                ',
                 'b) k = −1                ',
                 'c) k = 5                   ',
@@ -709,7 +869,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 1,
                 ],
             5: [
-                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16 ',
+                'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16',
                 'a) x = 0                 ',
                 'b) x = 1                 ',
                 'c) x = 4                 ',
@@ -718,7 +878,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 4,
                 ],
             6: [
-                'CALCULUS: Given that x – 2 is a factor of 2x3 + qx2 –\n 17x – 10, find the value of q. ',
+                'CALCULUS: Given that x – 2 is a factor of 2x3 + qx2 –\n 17x – 10, find the value of q.',
                 'a) q=2                    ',
                 'b) q=9                    ',
                 'c) q=7                    ',
@@ -727,7 +887,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 3,
                 ],
             7: [
-                'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value of k\n if st = 21 – i.      ',
+                'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value of k\n if st = 21 – i.',
                 'a) k = −5                  ',
                 'b) k = −9                  ',
                 'c) k = −7                  ',
@@ -736,7 +896,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 1,
                 ],
             8: [
-                'DIFFERENTIATION: Differentiate y = (2x – 5)^4.     ',
+                'DIFFERENTIATION: Differentiate y = (2x – 5)^4.',
                 'a) dy/dx =(8− 2x)    ',
                 'b) dy/dx =(3− 2x)    ',
                 'c) dy/dx =(6− 4x)    ',
@@ -745,7 +905,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 2,
                 ],
             9: [
-                'DIFFERENTIATION: Find the value of x for which the graph of\n the function y = x 1+ ln x has a stationary point  ',
+                'DIFFERENTIATION: Find the value of x for which the graph of\n the function y = x 1+ ln x has a stationary point',
                 'a) x=1                   ',
                 'b) x=9                   ',
                 'c) x=2                   ',
@@ -754,7 +914,7 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 1,
                 ],
             10: [
-                'DIFFERENTIATION: Differentiate y = (2x – 5)^4.  ',
+                'DIFFERENTIATION: Differentiate y = (2x – 5)^4.',
                 'a) 8(1x − 2)^2     ',
                 'b) 8(9x − 1)^2     ',
                 'c) 8(8x − 9)^9     ',
@@ -764,14 +924,14 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 ],
             }
 
+
         randomiser()
 
         # the label of the quiz questions so it can show up on the screen on the 3rd component (named Quiz)
 
         self.question_label = tk.Label(self,
-                                    text=self.questions_answers[qnum][0],
-                                    font=('Arial', '10'),
-                                    bg='#D5E8D4')
+                text=self.questions_answers[qnum][0], font=('Arial',
+                '10'), bg='#D5E8D4')
         self.question_label.grid(row=1, padx=5, pady=50)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
@@ -835,24 +995,31 @@ class Quizthree(tk.Frame): # questions for levelthree questions
             )
         self.rb4.grid(row=5, pady=3, padx=5)
 
-
         # score label is used to show how much the end user has scored and if they are loosing any points
 
-        self.score_label = tk.Label(self, text='SCORE',
-                                 font=('Arial', '11'),
-                                 bg='white')
+        self.score_label = tk.Label(self, text='SCORE', font=('Arial',
+                                    '11'), bg='white')
         self.score_label.grid(row=7, pady=10, padx=4)
 
         # after the user has pick there choice the confirm button will  go to the next question
 
-        self.confirm_button = tk.Button(self, text='CONFIRM',
-                bg='white',font=('Arial', '12'), command=self.test_progress, padx=10, pady=10)
-        self.confirm_button.grid(row=6,pady=1, padx=100)
+        self.confirm_button = tk.Button(
+            self,
+            text='CONFIRM',
+            bg='white',
+            font=('Arial', '12'),
+            command=self.test_progress,
+            padx=10,
+            pady=10,
+            )
+        self.confirm_button.grid(row=6, pady=1, padx=100)
 
-# this back button will go back to the login page      
-        self.back_button = tk.Button(self, text="  <<  ", bg='white',font=("Arial", 10), command=lambda: controller.show_frame(Year))
+# this back button will go back to the login page
+
+        self.back_button = tk.Button(self, text='  <<  ', bg='white',
+                font=('Arial', 10), command=lambda : \
+                controller.show_frame(Year))
         self.back_button.place(x=10, y=5)
-
 
   # the question label to new questions and possible answers as new radio button choices
 
@@ -877,21 +1044,21 @@ class Quizthree(tk.Frame): # questions for levelthree questions
                 scr_label.configure(text=score)  # it will change the score to the new score each time
                 self.confirm_button.config(text='confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-
-                  # to open endscreen when quiz is completed
             else:
 
-                print(choice)
+                  # to open endscreen when quiz is completed
+
+                print (choice)
                 score += 0  # score will stay the same if the questions is answered inccorectly
                 scr_label.configure(text='Incorrect the answer was:  '
                                     + self.questions_answers[qnum][5])  # sayin the incorrect answer the the question that the end user put wrong
                 self.confirm_button.config(text='Confirm')  # will change the test on the button to confirm
                 self.ending()  # to open endscreen when quiz is completed
-           
         else:
 
             if choice == 0:  # if the user doesnt select and option
-                self.confirm_button.config(text='Pick an option \n then press this button')  # then the confirm button will say plase try again until the questions is answered and an option is selected
+                self.confirm_button.config(text='Pick an option \n then press this button'
+                        )  # then the confirm button will say plase try again until the questions is answered and an option is selected
                 choice = self.var1.get()  # still get the answer if they chose it
             else:
 
@@ -906,105 +1073,179 @@ class Quizthree(tk.Frame): # questions for levelthree questions
 
              # if the choice was inccorect
 
-                    print(choice)
+                    print (choice)
                     score += 0
                     scr_label.configure(text='Incorrect the answer was:'
                              + self.questions_answers[qnum][5])  # telling the correct answer
                     self.confirm_button.config(text='Confirm')
                     self.questions_setup()  # moving to the next question
-    def ending(self):
-            ending_window = tk.Tk()
-            ending_window.resizable(0,0)
-            ending_window.configure(bg="#D5E8D4")
-            ending_window.title("NCEA MATHS EXAM HELPER")
-# this is a page before the ending page to say that the user has completed the quiz
-            ending_name_label = tk.Label(ending_window, text="You have now completed the quiz\npress the next button to to go to\nthe ending page ", font=("Arial",15), bg="#D5E8D4")
-            ending_name_label.place(x=30, y=150)
-            def check():
-              ending_window.destroy()
-              self.controller.show_frame(Ending)
-            ending_button = tk.Button(ending_window, text="Next", bg="white",font=("Arial",15), command=check, pady=12, padx=18)
-            ending_button.place(x=300, y=300)
-#this will only open a window you do what you like in here, you can add frame, image, whatever
-            ending_window.geometry("430x420")
-            ending_window.mainloop()
-    
 
-class Ending(tk.Frame):# ending component/ last page 
+    def ending(self):
+        ending_window = tk.Tk()
+        ending_window.resizable(0, 0)
+        ending_window.configure(bg='#D5E8D4')
+        ending_window.title('NCEA MATHS EXAM HELPER')
+
+# this is a page before the ending page to say that the user has completed the quiz
+
+        ending_name_label = tk.Label(ending_window,
+                text='''You have now completed the quiz
+press the next button to to go to
+the ending page ''',
+                font=('Arial', 15), bg='#D5E8D4')
+        ending_name_label.place(x=30, y=150)
+
+        def check():
+            ending_window.destroy()
+            self.controller.show_frame(Ending)
+
+        ending_button = tk.Button(
+            ending_window,
+            text='Next',
+            bg='white',
+            font=('Arial', 15),
+            command=check,
+            pady=12,
+            padx=18,
+            )
+        ending_button.place(x=300, y=300)
+
+# this will only open a window you do what you like in here, you can add frame, image, whatever
+
+        ending_window.geometry('430x420')
+        ending_window.mainloop()
+
+
+class Ending(tk.Frame):  # ending component/ last page
+
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg="#D5E8D4")
-#this is the background image used for the layout of my quiz as the white part of the image will be where i place the buttons and the green is for the text and the rest of the things      
-        load = Image.open("maths2.jpg")
+        tk.Frame.__init__(self, parent, bg='#D5E8D4')
+
+# this is the background image used for the layout of my quiz as the white part of the image will be where i place the buttons and the green is for the text and the rest of the things
+
+        load = Image.open('maths2.jpg')
         self.photo = ImageTk.PhotoImage(load)
         self.label = tk.Label(self, image=self.photo)
-        self.label.image=self.photo
-        self.label.place(x=0,y=0)
-# the user score will be seen in this page         
-        self.one_label = tk.Label(self, text=" YOU HAVE NOW FINISHED THE QUIZ ", bg = "#D5E8D4", font=("Arial Bold", 10))
+        self.label.image = self.photo
+        self.label.place(x=0, y=0)
+
+# the user score will be seen in this page
+
+        self.one_label = tk.Label(self,
+                                  text=' YOU HAVE NOW FINISHED THE QUIZ '
+                                  , bg='#D5E8D4', font=('Arial Bold',
+                                  10))
         self.one_label.place(x=34, y=255)
-# an emoji will be seen the page 
-        self.two_label = tk.Label(self, text="( ͡❛ ͜ʖ ͡❛)", bg = "#D5E8D4", font=("Arial Bold", 40))
+
+# an emoji will be seen the page
+
+        self.two_label = tk.Label(self,
+                                  text='( \xcd\xa1\xe2\x9d\x9b\xe2\x80\xaf\xcd\x9c\xca\x96 \xcd\xa1\xe2\x9d\x9b)'
+                                  , bg='#D5E8D4', font=('Arial Bold',
+                                  40))
         self.two_label.place(x=60, y=100)
 
-# this button will take the user back to the home page       
-        self.home_button = tk.Button(self, text="<<Home", pady=14, padx=15,  bg="#D5E8D4", font=("Arial", 12), command=lambda: controller.show_frame(Start))
+# this button will take the user back to the home page
+
+        self.home_button = tk.Button(
+            self,
+            text='<<Home',
+            pady=14,
+            padx=15,
+            bg='#D5E8D4',
+            font=('Arial', 12),
+            command=lambda : controller.show_frame(Start),
+            )
         self.home_button.place(x=303, y=60)
 
         def add():
             add_window = tk.Tk()
-            add_window.resizable(0,0)
-            add_window.configure(bg="#D5E8D4")
-            add_window.title("NCEA MATHS EXAM HELPER")
-            add_name_label = tk.Label(add_window, text="Answers:", font=("Arial",15), bg="#D5E8D4")
-            add_name_label.place(x=100, y=4) 
-            add_text_label = tk.Label(add_window, text="LEVELONE: 54, w = ±3, 𝑥 ≤ − 1/18\n 9x^2 + 30x + 25, x = 3, 40,  2x^2 – x – 6,\n x=-2, F = 20 cm, x ≥ 2\n\n\n\n  LEVELTWO:(6x – 5)(x + 3),  x = 6, x ≤ − 1/18\n (m + 3n)(f – 2g), x = 3\nx = 17.68, a(2) = 7, k = 0.5\ng(x) = 9x – 4, x = 2\n\n\n\nLEVELTHREE: 54, w = ±3, X ≤ − 1/18\nx = 3, k = −5, q=7\ndy/dx =(3− 2x), x=1\ndy/dx = 8(2x − 5)^3", font=("Arial",13), bg="#D5E8D4")
-            add_text_label.place(x=2, y=43) 
+            add_window.resizable(0, 0)
+            add_window.configure(bg='#D5E8D4')
+            add_window.title('NCEA MATHS EXAM HELPER')
+            add_name_label = tk.Label(add_window, text='Answers:',
+                    font=('Arial', 15), bg='#D5E8D4')
+            add_name_label.place(x=100, y=4)
+            add_text_label = tk.Label(add_window,
+                   text="LEVELONE: 54, w = ±3, 𝑥 ≤ − 1/18\n 9x^2 + 30x + 25, x = 3, 40,  2x^2 – x – 6,\n x=-2, F = 20 cm, x ≥ 2\n\n\n\nLEVELTWO:(6x – 5)(x + 3),  x = 6, x ≤ − 1/18\n (m + 3n)(f – 2g), x = 3\nx = 17.68, a(2) = 7, k = 0.5\ng(x) = 9x – 4, x = 2\n\n\n\nLEVELTHREE: 54, w = ±3, X ≤ − 1/18\nx = 3, k = −5, q=7\ndy/dx =(3− 2x), x=1\ndy/dx = 8(2x − 5)^3",
+                    font=('Arial', 13), bg='#D5E8D4')
+            add_text_label.place(x=2, y=43)
+
             def checking():
                 add_window.destroy()
-            add_button = tk.Button(add_window, text="<<", bg="white", command=checking)
+
+            add_button = tk.Button(add_window, text='<<', bg='white',
+                                   command=checking)
             add_button.place(x=10, y=10)
 
-            add_window.geometry("430x420")
+            add_window.geometry('430x420')
             add_window.mainloop()
 
-#this button will take the user to see the questions and answers 
-        self.answers_button = tk.Button(self, text="Answers to \n Question", padx=15, pady=30, bg="#D5E8D4", font=("Arial", 10), command=add)
+# this button will take the user to see the questions and answers
+
+        self.answers_button = tk.Button(
+            self,
+            text='Answers to \n Question',
+            padx=15,
+            pady=30,
+            bg='#D5E8D4',
+            font=('Arial', 10),
+            command=add,
+            )
         self.answers_button.place(x=303, y=160)
-      
+
         def destroy():
-          app.destroy()
-        self.exit_button = tk.Button(self, text=" Exit ", bg="#D5E8D4",  padx=33,font=("Arial", 12), pady=14, command=destroy)
+            app.destroy()
+
+        self.exit_button = tk.Button(
+            self,
+            text=' Exit ',
+            bg='#D5E8D4',
+            padx=33,
+            font=('Arial', 12),
+            pady=14,
+            command=destroy,
+            )
         self.exit_button.place(x=303, y=310)
-      
 
 
 class Application(tk.Tk):
+
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        
-      
-        self.window = tk.Frame(self)#tk frame 
+
+        self.window = tk.Frame(self)  # tk frame
         self.window.pack()
-        
-        self.window.grid_rowconfigure(0, minsize = 500)
-        self.window.grid_columnconfigure(0, minsize = 800)
-#these are the different components/ pages of the quiz program         
+
+        self.window.grid_rowconfigure(0, minsize=500)
+        self.window.grid_columnconfigure(0, minsize=800)
+
+# these are the different components/ pages of the quiz program
+
         self.frames = {}
-        for F in (Start, Year,Quizone, Quiztwo, Quizthree, Ending ):
+        for F in (
+            Start,
+            Year,
+            Quizone,
+            Quiztwo,
+            Quizthree,
+            Ending,
+            ):
             frame = F(self.window, self)
             self.frames[F] = frame
-            frame.grid(row = 0, column=0, sticky="nsew")
-            
+            frame.grid(row=0, column=0, sticky='nsew')
+
         self.show_frame(Start)
-        
+
     def show_frame(self, page):
         frame = self.frames[page]
         frame.tkraise()
-        self.title("NCEA MATHS QUIZ HELPER") # title of the frame/ quiz
+        self.title('NCEA MATHS QUIZ HELPER')  # title of the frame/ quiz
 
 
-#start of program
-if __name__ == '__main__':           
+# start of program
+
+if __name__ == '__main__':
     app = Application()
-    app.maxsize(430,420)#size of the quiz pages 
+    app.maxsize(430, 420)  # size of the quiz pages
     app.mainloop()
