@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk  # adding an image to the program
@@ -149,7 +147,7 @@ class Start(tk.Frame):  # first component:login page
 
 # the reister button is the click after typing in detail to make an account to register
 
-            self.signup_button = tk.Button(
+            self.register_button = tk.Button(
                 signup_window,
                 text='REGISTER',
                 font=('Arial', 15),
@@ -158,7 +156,7 @@ class Start(tk.Frame):  # first component:login page
                 pady=12,
                 padx=18,
                 )
-            self.signup_button.place(x=270, y=160)
+            self.register_button.place(x=270, y=160)
 
             signup_window.geometry('430x240')  # size of the reisgister page
             signup_window.mainloop()
@@ -256,20 +254,20 @@ class Quizone(tk.Frame):  # questions for levelone questions
         self.questions_answers = {  # questions to be changed later
             1: [
                 'ALGERBA: Find the value of 2x2 – 3xy\nwhen x = –3 and y = 4.',
-                'a) 55                        ',
-                'b) 65                        ',
-                'c) 54                        ',
-                'd) 75                        ',
-                'c) 54                        ',
+                'a) 55                         ',
+                'b) 65                         ',
+                'c) 54                         ',
+                'd) 75                         ',
+                'c) 54                         ',
                 3,
                 ],
             2: [
                 'ALGEBRA: Solve the equation: w^4 – 18w2 + 81 = 0.',
-                'a)3                           ',
-                'b)2                           ',
-                'c)1                           ',
-                'd)5                           ',
-                'a)3                           ',
+                'a)3                            ',
+                'b)2                            ',
+                'c)1                            ',
+                'd)5                            ',
+                'a)3                            ',
                 1,
                 ],
             3: [
@@ -283,11 +281,11 @@ class Quizone(tk.Frame):  # questions for levelone questions
                 ],
             4: [
                 'ALGEBRA: What is the area of a square with sides of length\n (3x + 5) cm? Give your answer interms of x \nand in the form ax2 + bx + c.',
-                'a)9x^2 + 30x + 25',
-                'b)8x^2 + 20x + 66',
-                'c)7x^2 + 10x + 59',
-                'd)9x^2 + 35x + 15',
-                'a)9x^2 + 30x + 25',
+                'a)9x^2 + 30x + 25 ',
+                'b)8x^2 + 20x + 66 ',
+                'c)7x^2 + 10x + 59 ',
+                'd)9x^2 + 35x + 15 ',
+                'a)9x^2 + 30x + 25 ',
                 1,
                 ],
             5: [
@@ -301,47 +299,47 @@ class Quizone(tk.Frame):  # questions for levelone questions
                 ],
             6: [
                 'ALGEBRA: what is the value of 2x^4-3x+5 when x=-2?',
-                'a) 50                   ',
-                'b) 90                   ',
-                'c) 40                   ',
-                'd) 10                   ',
-                'c) 40                   ',
+                'a) 50                         ',
+                'b) 90                         ',
+                'c) 40                         ',
+                'd) 10                         ',
+                'c) 40                         ',
                 3,
                 ],
             7: [
                 'ALGEBRA: Solve the equation 10x^2−27x−9=0',
-                'a) x ≥ 2              ',
-                'b) x ≥ 8              ',
-                'c) x ≥ 5              ',
-                'd) x ≥ 4              ',
-                'a) x ≥ 2              ',
+                'a) x ≥ 2                    ',
+                'b) x ≥ 8                    ',
+                'c) x ≥ 5                    ',
+                'd) x ≥ 4                    ',
+                'a) x ≥ 2                    ',
                 1,
                 ],
             8: [
                 'ALGEBRA: w = pq2+r. Give the equation for p in terms\n of q, r, and w.',
-                'a) F = 60 cm         ',
-                'b) F = 20 cm         ',
-                'c) F = 0 cm           ',
-                'd) F = 10 cm         ',
-                'b) F = 20 cm         ',
+                'a) F = 60 cm            ',
+                'b) F = 20 cm            ',
+                'c) F = 0 cm               ',
+                'd) F = 10 cm            ',
+                'b) F = 20 cm            ',
                 2,
                 ],
             9: [
                 'ALGEBRA: Solve 3x^2+ 2x–8 = 0.',
-                'a) x=-2                  ',
-                'b) x=2                   ',
-                'c) x=8                   ',
-                'd) x=-1                  ',
-                'a) x=-2                  ',
+                'a) x=-2                     ',
+                'b) x=2                      ',
+                'c) x=8                      ',
+                'd) x=-1                     ',
+                'a) x=-2                     ',
                 1,
                 ],
             10: [
                 'ALGEBRA: The sides of a rectangle are 2x + 3 and \nx – 2.Give an expression for the area of the rectangle \nin the form ax^2+ bx + c.',
-                'a) 2x^2 – x – 9     ',
-                'b) 2x – x – 6         ',
-                'c) x^2 – x – 6      ',
-                'd) 2x^2 – x – 6     ',
-                'd) 2x^2 – x – 6     ',
+                'a) 2x^2 – x – 9        ',
+                'b) 2x – x – 6             ',
+                'c) x^2 – x – 6           ',
+                'd) 2x^2 – x – 6        ',
+                'd) 2x^2 – x – 6        ',
                 4,
                 ],
             }
@@ -353,7 +351,7 @@ class Quizone(tk.Frame):  # questions for levelone questions
         self.question_label = tk.Label(self,
                 text=self.questions_answers[qnum][0], font=('Arial',
                 '10'), bg='#D5E8D4')
-        self.question_label.grid(row=1, padx=5, pady=50)
+        self.question_label.grid(row=0, padx=5, pady=40)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
         # radio button 1 so the first choices will appear
@@ -554,11 +552,11 @@ class Quiztwo(tk.Frame):  # questions for leveltwo questions
                 ],
             2: [
                 'ALGEBRA: solve: logx (36) = 2',
-                'a)x = 6                    ',
-                'b)x = 0                    ',
-                'c)x = 1                    ',
-                'd)x = 7                    ',
-                'a)x = 6                    ',
+                'a)x = 6                     ',
+                'b)x = 0                     ',
+                'c)x = 1                     ',
+                'd)x = 7                     ',
+                'a)x = 6                     ',
                 1,
                 ],
             3: [
@@ -590,29 +588,29 @@ class Quiztwo(tk.Frame):  # questions for leveltwo questions
                 ],
             6: [
                 'ALGEBRA: solve: log5(x) + log5(2x) = 4.',
-                'a)  x = 18.67           ',
-                'b)  x = 16.78           ',
-                'c)  x = 17.68           ',
-                'd)  x = 17               ',
-                'c)  x = 17.68           ',
+                'a)  x = 18.67            ',
+                'b)  x = 16.78            ',
+                'c)  x = 17.68            ',
+                'd)  x = 17                 ',
+                'c)  x = 17.68            ',
                 3,
                 ],
             7: [
-                'CALCULUS:  Find the equation of the tangent to the curve of\n y = x2 + 5x at the point (2,14).',
-                'a) g(x) = 9x – 4      ',
-                'b) g(x) = 8x – 2      ',
-                'c) g(x) = 9x – 4      ',
-                'd) g(y) = 8x – 2      ',
-                'a) g(x) = 9x – 4      ',
+                'CALCULUS: Find the equation of the tangent to the curve of\n y = x2 + 5x at the point (2,14).',
+                'a) g(x) = 9x – 4       ',
+                'b) g(x) = 8x – 2       ',
+                'c) g(x) = 9x – 4       ',
+                'd) g(y) = 8x – 2       ',
+                'a) g(x) = 9x – 4       ',
                 1,
                 ],
             8: [
                 'CALCULUS: Another function is given by h (x) = 0.5x^2 + 3x\n – 1. Find the x-coordinate of the point on the graph of\n this function where the gradient is 5.',
-                'a) x = 1                  ',
-                'b) x = 2                  ',
-                'c) x = 4                  ',
-                'd) x = 8                  ',
-                'b) x = 2                  ',
+                'a) x = 1                   ',
+                'b) x = 2                   ',
+                'c) x = 4                   ',
+                'd) x = 8                   ',
+                'b) x = 2                   ',
                 2,
                 ],
             9: [
@@ -642,7 +640,7 @@ class Quiztwo(tk.Frame):  # questions for leveltwo questions
         self.question_label = tk.Label(self,
                 text=self.questions_answers[qnum][0], font=('Arial',
                 '10'), bg='#D5E8D4')
-        self.question_label.grid(row=1, padx=5, pady=50)
+        self.question_label.grid(row=0, padx=5, pady=40)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
         # radio button 1 so the first choices will appear
@@ -833,57 +831,57 @@ class Quizthree(tk.Frame):  # questions for levelthree questions
         self.controller = controller
         self.questions_answers = {  # questions to be changed later
             1: [
-                'ALGERBA: Find the value of 2x2 – 3xy when x = –3 and y = 4.',
-                'a) 55                     ',
-                'b) 65                     ',
-                'c) 54                     ',
-                'd) 75                     ',
-                'c) 54                     ',
+                'ALGERBA: Find the value of 2x^2 – 3xy when x = –3 and\n y = 4.',
+                'a) 55                       ',
+                'b) 65                       ',
+                'c) 54                       ',
+                'd) 75                       ',
+                'c) 54                       ',
                 3,
                 ],
             2: [
                 'ALGEBRA: Solve the equation: w^4 – 18w^2 + 81 = 0.',
-                'a)3                          ',
-                'b)2                          ',
-                'c)1                          ',
-                'd)6                          ',
-                'a)3                          ',
+                'a) 3                           ',
+                'b) 2                           ',
+                'c) 1                           ',
+                'd) 6                           ',
+                'a) 3                           ',
                 1,
                 ],
             3: [
                 'ALGEBRA: Solve the inequality: (3x + 2)\n(2x – 1) ≤ (6x + 1)(x – 3)',
-                'a) x = - 3/18           ',
-                'b) x ≤ - 1/18           ',
-                'c) x ≤ 1                  ',
-                'd) x = 0.52             ',
-                'b) x ≤ − 1/18           ',
+                'a) x = - 3/18            ',
+                'b) x ≤ - 1/18            ',
+                'c) x ≤ 1                    ',
+                'd) x = 0.52              ',
+                'b) x ≤ − 1/18            ',
                 2,
                 ],
             4: [
                 'CALCULUS: If s = 2 + 3i and t = 3 + k i, find the value\n of k if st = 21 – i.',
-                'a) k = −5                ',
-                'b) k = −1                ',
-                'c) k = 5                   ',
-                'd) k = −0                ',
-                'a) k = −5                ',
+                'a) k = −5                 ',
+                'b) k = −1                 ',
+                'c) k = 5                     ',
+                'd) k = −0                 ',
+                'a) k = −5                 ',
                 1,
                 ],
             5: [
                 'ALGEBRA: Solve the equation: 2x × 23x – 8 = 16',
-                'a) x = 0                 ',
-                'b) x = 1                 ',
-                'c) x = 4                 ',
-                'd) x = 3                 ',
-                'd) x = 3                 ',
+                'a) x = 0                    ',
+                'b) x = 1                    ',
+                'c) x = 4                    ',
+                'd) x = 3                    ',
+                'd) x = 3                    ',
                 4,
                 ],
             6: [
                 'CALCULUS: Given that x – 2 is a factor of 2x3 + qx2 –\n 17x – 10, find the value of q.',
-                'a) q=2                    ',
-                'b) q=9                    ',
-                'c) q=7                    ',
-                'd) q=0                    ',
-                'c) q=7                    ',
+                'a) q=2                     ',
+                'b) q=9                     ',
+                'c) q=7                     ',
+                'd) q=0                     ',
+                'c) q=7                     ',
                 3,
                 ],
             7: [
@@ -906,20 +904,20 @@ class Quizthree(tk.Frame):  # questions for levelthree questions
                 ],
             9: [
                 'DIFFERENTIATION: Find the value of x for which the graph of\n the function y = x 1+ ln x has a stationary point',
-                'a) x=1                   ',
-                'b) x=9                   ',
-                'c) x=2                   ',
-                'd) x=0                   ',
-                'a) x=1                   ',
+                'a) x=1                      ',
+                'b) x=9                      ',
+                'c) x=2                      ',
+                'd) x=0                      ',
+                'a) x=1                      ',
                 1,
                 ],
             10: [
                 'DIFFERENTIATION: Differentiate y = (2x – 5)^4.',
-                'a) 8(1x − 2)^2     ',
-                'b) 8(9x − 1)^2     ',
-                'c) 8(8x − 9)^9     ',
-                'd) 8(2x − 5)^3     ',
-                'd) 8(2x − 5)^3     ',
+                'a) 8(1x − 2)^2       ',
+                'b) 8(9x − 1)^2       ',
+                'c) 8(8x − 9)^9       ',
+                'd) 8(2x − 5)^3       ',
+                'd) 8(2x − 5)^3       ',
                 4,
                 ],
             }
@@ -932,7 +930,7 @@ class Quizthree(tk.Frame):  # questions for levelthree questions
         self.question_label = tk.Label(self,
                 text=self.questions_answers[qnum][0], font=('Arial',
                 '10'), bg='#D5E8D4')
-        self.question_label.grid(row=1, padx=5, pady=50)
+        self.question_label.grid(row=0, padx=5, pady=40)
         self.var1 = tk.IntVar()  # holds the radio buttons
 
         # radio button 1 so the first choices will appear
@@ -1016,7 +1014,7 @@ class Quizthree(tk.Frame):  # questions for levelthree questions
 
 # this back button will go back to the login page
 
-        self.back_button = tk.Button(self, text='  <<  ', bg='white',
+        self.back_button = tk.Button(self, text='<<year', bg='white',
                 font=('Arial', 10), command=lambda : \
                 controller.show_frame(Year))
         self.back_button.place(x=10, y=5)
@@ -1140,10 +1138,10 @@ class Ending(tk.Frame):  # ending component/ last page
 # an emoji will be seen the page
 
         self.two_label = tk.Label(self,
-                                  text='( ͡❛ ͜ʖ ͡❛)'
+                                  text='╰( ^o^)╮╰( ^o^)╮'
                                   , bg='#D5E8D4', font=('Arial Bold',
-                                  40))
-        self.two_label.place(x=60, y=100)
+                                  20))
+        self.two_label.place(x=10, y=100)
 
 # this button will take the user back to the home page
 
