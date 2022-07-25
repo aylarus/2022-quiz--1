@@ -128,25 +128,28 @@ class Start(tk.Frame):  # first component:login page
 
             def check():  # error messeges will appear if the user has typed in 2 different passwords in the password boz and confirm password box and an info box will welcome the user/ tell them they have been registered
                 if sgn_name_entry.get() != '' and sgn_password_entry.get() != '' and confirm_password_entry.get() != '':
-                    if len(sgn_name_entry.get()) >=3 and len(sgn_name_entry.get()) <=15:
-                      if sgn_password_entry.get() == confirm_password_entry.get():
+                    if len(sgn_name_entry.get()) >=4 and len(sgn_name_entry.get()) <=15:
+                      if len(sgn_password_entry.get()) >=4 and len(sgn_name_entry.get()) <=15:
+                        if sgn_password_entry.get() == confirm_password_entry.get():
                           with open('users.txt', 'a') as f:
                               f.write(sgn_name_entry.get() + ','
                                       + sgn_password_entry.get() + '\n')
                               messagebox.showinfo('Welcome',
                                       'You are registered successfully!!')
                               signup_window.destroy()
-                      else:
+                        else:
                           messagebox.showinfo('Error',
                                   'please fill in the boxes correctly!! passwords do not match!')
+                      else:
+                        messagebox.showinfo('Error', 'password must be between 4 and 15 characters ')
                     else:
                       messagebox.showinfo('Error',
-                                  'user name must be between 3 and 15 charachters') 
+                                  'username must be between 4 and 15 characters') 
                 else:
                     messagebox.showinfo('Error',
-                            'Please fill in the boxes!')
+                            'Please fill in all the boxes!')
 
-               
+                    
                 
 
 # the reister button is the click after typing in detail to make an account to register
